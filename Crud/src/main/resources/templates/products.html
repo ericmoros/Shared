@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{/index}">
+
+<head>
+    <title>Crud - Products</title>
+</head>
+
+<body>
+    <main role="main" layout:fragment="main">
+        <div class="container">
+            <h2>Products</h2>
+            <!-- table -->
+            <table class="table table-hover table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col" colspan="4">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr th:id="${product.id}" th:each="product : ${products}">
+                        <th scope="row" th:text="${product.id}"></th>
+                        <td id="name" th:text="${product.name}"></td>
+                        <td id="price" style="display: none;" th:text="${product.price}"></td>
+                        <td id="priceEur" th:text="${product.priceEur}"></td>
+                        <td id="stock" th:text="${product.stock}"></td>
+                        <td id="description" th:text="${product.description}"></td>
+                        <td>
+                            <button th:id="${product.id}" type="button" class="btn btn-outline-secondary edit"
+                                data-toggle="modal" data-target="#editProduct">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <form th:action="${'/products/delete/' + product.id}" method="GET">
+                                <!-- <input type="hidden" name="id" th:value="${product.id}"> -->
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/products/add}" method="post">
+                                <input type="hidden" name="id" th:value="${product.id}">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-cart-plus" type="submit"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="editProductLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edit-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="${'/products/edit'}" method="POST">
+                                <div class="form-group" style="display: none;">
+                                    <label for="id">Id</label>
+                                    <input th:id="edit-id" type="text" class="form-control" name="id" id="modal-id" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input th:id="edit-name" type="text" class="form-control" name="name" id="modal-name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Price</label>
+                                    <input th:id="edit-price" type="text" class="form-control" name="price" id="modal-price" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="stock">Stock</label>
+                                    <input th:id="edit-stock" type="text" class="form-control" name="stock" id="modal-stock" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input th:id="edit-description" type="text" class="form-control" name="description"
+                                        id="modal-description" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

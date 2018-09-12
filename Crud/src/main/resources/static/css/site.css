@@ -1,0 +1,18 @@
+body {
+    margin-top: 56px;
+    margin-bottom: 100px;
+}
+
+main>.container {
+    padding-top: 25px;
+}
+
+i#cart {
+    width: 100%;
+    color: #cccecf;
+}
+
+td,
+tbody th {
+    vertical-align: middle !important;
+}

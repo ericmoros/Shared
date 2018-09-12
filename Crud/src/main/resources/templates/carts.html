@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{/index}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cruz - carts</title>
+</head>
+
+<body>
+    <main role="main" layout:fragment="main">
+        <div class="container">
+            <h2>Cart</h2>
+            <table class="table table-sm table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Total price</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr th:each="cart : ${carts}">
+                        <th scope="row" th:text="${cart.id}">1</th>
+                        <td th:text="${cart.name}"></td>
+                        <td th:text="${cart.discount}"></td>
+                        <td th:text="${cart.totalPrice}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

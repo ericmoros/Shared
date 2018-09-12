@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{/index}">
+
+<head>
+    <title>Crud - Cart</title>
+</head>
+
+<body>
+    <main role="main" layout:fragment="main">
+        <div class="container">
+            <h2>Cart</h2>
+            <table class="table table-sm table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col" colspan="2">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr th:each="product : ${products}">
+                        <th scope="row" th:text="${product.id}">1</th>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.priceEur}"></td>
+                        <td th:text="${product.stock}"></td>
+                        <td th:text="${product.description}"></td>
+                        <td>
+                            <form th:action="@{cart/deleteProduct}" method="POST">
+                                <input type="hidden" name="id" th:value="${product.id}" />
+                                <input type="hidden" name="name" th:value="${product.name}" />
+                                <input type="hidden" name="price" th:value="${product.price}" />
+                                <input type="hidden" name="stock" th:value="${product.stock}" />
+                                <input type="hidden" name="description" th:value="${product.description}" />
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>
