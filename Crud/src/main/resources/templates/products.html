@@ -2,13 +2,16 @@
 <html lang="en" layout:decorate="~{/index}">
 
 <head>
-    <title>Crud - Products</title>
+    <title>Shop - Products</title>
 </head>
 
 <body>
     <main role="main" layout:fragment="main">
         <div class="container">
             <h2>Products</h2>
+            <button type="button" class="btn btn-outline-secondary edit" data-toggle="modal" data-target="#addProduct">
+                Add new Product
+            </button>
             <!-- table -->
             <table class="table table-hover table-sm table-striped">
                 <thead class="thead-dark">
@@ -17,17 +20,20 @@
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Stock</th>
+                        <th scope="col">Total price</th>
                         <th scope="col" colspan="4">Description</th>
                     </tr>
                 </thead>
                 <tbody class="">
-                    <tr th:id="${product.id}" th:each="product : ${products}">
-                        <th scope="row" th:text="${product.id}"></th>
-                        <td id="name" th:text="${product.name}"></td>
-                        <td id="price" style="display: none;" th:text="${product.price}"></td>
-                        <td id="priceEur" th:text="${product.priceEur}"></td>
-                        <td id="stock" th:text="${product.stock}"></td>
-                        <td id="description" th:text="${product.description}"></td>
+                    <tr th:id="${'tr-' + product.id}" th:each="product : ${products}">
+                        <td class="td-id" th:text="${product.id}"></td>
+                        <td class="td-name" th:text="${product.name}"></td>
+                        <td class="td-price" style="display: none;" th:text="${product.price}"></td>
+                        <td class="td-priceEur" th:text="${product.priceEur}"></td>
+                        <td class="td-stock" th:text="${product.stock}"></td>
+                        <td class="td-totalPrice" style="display: none;" th:text="${product.totalPrice}"></td>
+                        <td class="td-totalPriceEur" th:text="${product.totalPriceEur}"></td>
+                        <td class="td-description" th:text="${product.description}"></td>
                         <td>
                             <button th:id="${product.id}" type="button" class="btn btn-outline-secondary edit"
                                 data-toggle="modal" data-target="#editProduct">
@@ -36,15 +42,13 @@
                         </td>
                         <td>
                             <form th:action="${'/products/delete/' + product.id}" method="GET">
-                                <!-- <input type="hidden" name="id" th:value="${product.id}"> -->
                                 <button class="btn btn-outline-secondary" type="submit">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
                         </td>
                         <td>
-                            <form th:action="@{/products/add}" method="post">
-                                <input type="hidden" name="id" th:value="${product.id}">
+                            <form th:action="${'/cart/add/product/' + product.id}" method="get">
                                 <button class="btn btn-outline-secondary" type="submit">
                                     <i class="fas fa-cart-plus" type="submit"></i>
                                 </button>
@@ -53,6 +57,12 @@
                     </tr>
                 </tbody>
             </table>
+            <div th:if="${products.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
+                <a th:href="@{/products(size=${products.size}, page=${pageNumber})}"
+                    th:text=${pageNumber}
+                    th:class="${pageNumber==products.number + 1} ? active">
+                </a>
+            </div>
             <!-- Modal -->
             <div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="editProductLabel"
                 aria-hidden="true">

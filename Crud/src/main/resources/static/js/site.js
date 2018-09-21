@@ -8,10 +8,10 @@ jQuery(document).ready(function ($) {
 });
 
 function editProduct(id) {
-    var name = $('tr#' + id + ' td#name').text();
-    var price = $('tr#' + id + ' td#price').text();
-    var stock = $('tr#' + id + ' td#stock').text();
-    var description = $('tr#' + id + ' td#description').text();
+    var name = $('tr#tr-' + id + ' td.td-name').text();
+    var price = $('tr#tr-' + id + ' td.td-price').text();
+    var stock = $('tr#tr-' + id + ' td.td-stock').text();
+    var description = $('tr#tr-' + id + ' td.td-description').text();
 
     $('#edit-title').text("Editing " + id);
     $('#edit-id').val(id);

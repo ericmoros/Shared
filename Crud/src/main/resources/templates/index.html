@@ -3,7 +3,7 @@
 
 <head>
     <meta th:replace="fragments/metas" />
-    <title layout:tittle-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">Crud</title>
+    <title layout:tittle-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">Shop</title>
     <link th:replace="fragments/links" />
 </head>
 
@@ -12,13 +12,13 @@
     <main role="main" layout:fragment="main">
         <div class="jumbotron">
             <div class="container">
-                <h1 class="display-4">Welcome to Crud!</h1>
-                <p>This is a crud example project.</p>
+                <h1 class="display-4">Welcome to Shop!</h1>
+                <p>This is a shop example project.</p>
                 <a class="btn btn-primary btn-lg" href="/cart" role="button">See cart</a>
             </div>
         </div>
     </main>
-    <footer th:replace="fragments/footer"></footer>
+    <footer th:replace="fragments/footer" layout:fragment="footer"></footer>
     <script th:replace="fragments/scripts"></script>
 </body>
 

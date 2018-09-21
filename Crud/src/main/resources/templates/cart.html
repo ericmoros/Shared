@@ -8,31 +8,47 @@
 <body>
     <main role="main" layout:fragment="main">
         <div class="container">
-            <h2>Cart</h2>
-            <table class="table table-sm table-striped table-hover">
+            <div class="row">
+                <div class="col">
+                    <h2 id="name" th:text="${cart.name}"></h2>
+                </div>
+                <div class="col">
+                    <form th:action="${'carts/add'}" method="POST">
+                        <input th:value="${cart}" name="cart" id="cart">
+                        <button type="submit" class="btn btn-block btn-outline-primary">CONFIRMAR</button>
+                    </form>
+
+                </div>
+            </div>
+            <!-- Refresh Price -->
+            <div>
+                <form hidden th:action="${cart.setPrice()}">
+                    <button type="submit" class="btn btn-primary">Refresh Price</button>
+                </form>
+                <form hidden th:action="${cart.setTotalPrice()}">
+                    <button type="submit" class="btn btn-primary">Refresh totalPrice</button>
+                </form>
+            </div>
+            <br />
+            <h3>Coupon</h3>
+            <!-- Add coupon -->
+            <div th:if="${coupon == null}">
+                <button type="button" class="btn btn-outline-secondary edit" data-toggle="modal" data-target="#addCoupon">
+                    Add new Coupon
+                </button>
+            </div>
+            <!-- Coupon -->
+            <table th:if="${coupon}" class="table table-hover table-sm table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col" colspan="2">Description</th>
+                        <th scope="col" colspan="2">Code Discount</th>
                     </tr>
                 </thead>
                 <tbody class="">
-                    <tr th:each="product : ${products}">
-                        <th scope="row" th:text="${product.id}">1</th>
-                        <td th:text="${product.name}"></td>
-                        <td th:text="${product.priceEur}"></td>
-                        <td th:text="${product.stock}"></td>
-                        <td th:text="${product.description}"></td>
+                    <tr>
+                        <td id="code" th:text="${coupon.code}"></td>
                         <td>
-                            <form th:action="@{cart/deleteProduct}" method="POST">
-                                <input type="hidden" name="id" th:value="${product.id}" />
-                                <input type="hidden" name="name" th:value="${product.name}" />
-                                <input type="hidden" name="price" th:value="${product.price}" />
-                                <input type="hidden" name="stock" th:value="${product.stock}" />
-                                <input type="hidden" name="description" th:value="${product.description}" />
+                            <form th:action="${'/cart/delete/coupon/'}" method="GET">
                                 <button class="btn btn-outline-secondary" type="submit">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
@@ -41,6 +57,107 @@
                     </tr>
                 </tbody>
             </table>
+            <br />
+            <!-- Products -->
+            <h3>Products</h3>
+            <table class="table table-hover table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col" colspan="4">Price</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr th:id="${product.id}" th:each="product : ${products}">
+                        <td id="id" th:text="${product.id}"></td>
+                        <td id="name" th:text="${product.name}"></td>
+                        <td id="price" style="display: none;" th:text="${product.price}"></td>
+                        <td id="priceEur" th:text="${product.priceEur}"></td>
+                        <td id="stock" th:text="${product.stock}"></td>
+                        <td id="totalPrice" style="display: none;" th:text="${product.totalPrice}"></td>
+                        <td id="totalPriceEur" th:text="${product.totalPriceEur}"></td>
+                        <td>
+                            <form th:action="${'/cart/delete/product/' + product.id}" method="GET">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Cart details -->
+            <table class="table table-hover table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th th:if="${coupon}" scope="col">Price</th>
+                        <th th:if="${coupon}" scope="col">Discount</th>
+                        <th scope="col" colspan="2">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr>
+                        <td th:if="${coupon}" th:text="${cart.priceEur}"></td>
+                        <td th:if="${coupon}" th:text="${coupon.amountEur}"></td>
+                        <td th:text="${cart.totalPriceEur}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Modal Coupon -->
+            <div class="modal fade" id="addCoupon" tabindex="-1" role="dialog" aria-labelledby="addCouponLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edit-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="${'/cart/add/coupon'}" method="POST">
+                                <div class="form-group">
+                                    <label for="code">Code</label>
+                                    <input th:id="edit-code" type="text" class="form-control" name="code" id="modal-code" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Producto -->
+            <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="addProductLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edit-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="${'/cart/add/product'}" method="POST">
+                                <div class="form-group">
+                                    <label for="id">ID</label>
+                                    <input th:id="edit-id" type="number" class="form-control" name="id" id="modal-id" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 </body>

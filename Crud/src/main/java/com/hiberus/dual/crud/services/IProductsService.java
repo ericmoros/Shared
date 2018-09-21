@@ -5,6 +5,9 @@ import java.util.Arrays;
 
 import com.hiberus.dual.crud.models.Product;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 /**
  * IProducts
  */
@@ -50,28 +53,6 @@ public interface IProductsService {
                 )
         );
 
-        // ArrayList<Product> ERIC_PRODUCTS = new ArrayList<Product>(
-        // Arrays.asList(new Product[] { new Product(650, "Leche", 2.87F, 1, "No
-        // description"),
-        // new Product(650, "Arroz", 0.61F, 1, "No description"),
-        // new Product(3, "Maizena", 1.27F, 7, "No description"),
-        // new Product(4, "Café soluble", 2.00F, 200, "No description"),
-        // new Product(5, "Frijol", 2.55F, 2, "No description"),
-        // new Product(6, "Sopa", 0.15F, 7, "No description"),
-        // new Product(7, "Huevos", 1.89F, 2, "No description"),
-        // new Product(8, "Consomate", 0.45F, 8, "No description"),
-        // new Product(33, "Pasta de dientes", 0.91F, 1, "No description") }));
-        // ArrayList<Product> SUSAN_PRODUCTS = new ArrayList<Product>(
-        // Arrays.asList(new Product[] { new Product(1, "Leche", 2.87F, 1, "No
-        // description"),
-        // new Product(2, "Arroz", 0.61F, 1, "No description"),
-        // new Product(3, "Maizena", 1.27F, 7, "No description"),
-        // new Product(4, "Café soluble", 2.00F, 200, "No description"),
-        // new Product(29, "Pláanos", 0.55F, 2, "No description"),
-        // new Product(31, "Tortillas de maiz", 9.55F, 14, "No description"),
-        // new Product(32, "Pinol", 0.64F, 1, "No description"),
-        // new Product(33, "Pasta de dientes", 0.91F, 1, "No description") }));
-
         // Methods
         ArrayList<Product> getProducts();
 
@@ -83,7 +64,13 @@ public interface IProductsService {
 
         void addProduct(Product product);
 
+        void addProducts(ArrayList<Product> products);
+
         void deleteProducts();
 
         void editProduct(Product product);
+
+        void updateTotalPrice();
+
+        Page<Product> findPaginated(Pageable pageable);
 }

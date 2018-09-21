@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta th:replace="fragments/metas" />
+    <title layout:tittle-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">Shop</title>
+    <link th:replace="fragments/links" />
+</head>
+
+<body>
+    <main role="main" layout:fragment="main">
+        <form style="margin: auto;" action="/carts" method="get">
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Go Carts</button>
+        </form>
+    </main>
+    <footer th:replace="fragments/footer"></footer>
+    <script th:replace="fragments/scripts"></script>
+</body>
+
+</html>

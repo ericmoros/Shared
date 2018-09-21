@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="~{/index}">
+
+<head>
+    <title>Shop - Coupons</title>
+</head>
+
+<body>
+    <main role="main" layout:fragment="main">
+        <div class="container">
+            <h2>Coupons</h2>
+            <button type="button" class="btn btn-outline-secondary edit" data-toggle="modal" data-target="#addCoupon">
+                Add new Coupon
+            </button>
+            <br />
+            <table class="table table-hover table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr> 
+                        <th scope="col">Code</th>
+                        <th scope="col">Coupon type</th>
+                        <th scope="col" colspan="4">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    <tr th:id="${coupon.id}" th:each="coupon : ${coupons}">                        
+                        <td id="code" th:text="${coupon.code}"></td>
+                        <td id="couponType" th:text="${coupon.couponType}"></td>
+                        <td id="amount" style="display: none;" th:text="${coupon.amount}"></td>
+                        <td id="amountEur" th:text="${coupon.amountEur}"></td>
+                        <!-- <td>
+                            <button th:id="${'/coupons/edit' + coupon.id}" type="button" class="btn btn-outline-secondary edit"
+                                data-toggle="modal" data-target="#edit-coupon">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td> -->
+                        <td>
+                            <form th:action="${'/coupons/delete/' + coupon.id}" method="GET">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="${'/cart/add/coupon/' + coupon.code}" method="get">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="fas fa-cart-plus" type="submit"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Modal -->
+            <div class="modal fade" id="addCoupon" tabindex="-1" role="dialog" aria-labelledby="addCouponLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edit-title"></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="${'/coupons/add'}" method="POST">
+                                <div class="form-group">
+                                    <label for="code">Code</label>
+                                    <input th:id="edit-code" type="text" class="form-control" name="code" id="modal-code" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="couponType">Coupon type</label>
+                                    <select class="form-control" id="edit-couponType" name="couponType">
+                                        <option>ABSOLUTE</option>
+                                        <option>PERCENTAGE</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">Amount</label>
+                                    <input th:id="edit-amount" type="number" class="form-control" name="amount" id="modal-amount" />
+                                </div>
+                                <button type="submit" class="btn btn-primary">Confirm</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -18,7 +18,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-public class Product {
+public class Product implements Cloneable {
     // Atts
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -29,20 +29,31 @@ public class Product {
     private Integer stock = 0;
     private String description;
 
+    
     //Relations
     @ManyToMany
     private List<Cart> carts = new ArrayList<>();
-
+    
     // Ctor
     public Product() {
     }
-
+    
     public Product(long id, String name, float price, int stock, String description) {
         this.id = id;
         this.name = name;
         setPrice(price);
         this.stock = stock;
         this.description = description;
+        setTotalPrice(totalPrice);
+    }
+
+    public Product(Product product) {
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.totalPrice = product.getTotalPrice();
+        this.stock = product.getStock();
+        this.description = product.getDescription();
     }
 
     // Methods
@@ -55,10 +66,19 @@ public class Product {
     }
 
     public void setTotalPrice() {
+        this.totalPrice = 0F;
         this.totalPrice = this.price * this.stock;
     }
 
     public String getPriceEur() {
         return String.format("%1$.2f€", this.price);
+    }
+
+    public String getTotalPriceEur() {
+        return String.format("%1$.2f€", this.totalPrice);
+    }
+
+    public void upStock() {
+        this.stock++;
     }
 }
