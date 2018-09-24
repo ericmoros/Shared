@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.hiberus.dual.hotel.modelos.habitacion.Habitacion;
@@ -31,6 +32,7 @@ public class Reserva {
     private Date fechaf;
     @OneToOne
     private Usuario usuario;
+    // TODO: Cambiar a OneToMany
     @OneToOne
     private Habitacion habitacion;
 

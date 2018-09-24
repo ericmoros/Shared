@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * UsuarioControlador
  */
 @Controller
-@RequestMapping("/usuarios")
+@RequestMapping({ "/usuarios", "/usuario" })
 public class UsuarioControlador {
     // Atts
     private Gson format;
@@ -30,15 +31,16 @@ public class UsuarioControlador {
     }
 
     // Methods
-    @GetMapping
+    @GetMapping({ "/all", "" })
+    @ResponseBody
     public String getAll() {
         ArrayList<Usuario> usuarios = uS.getAll();
         String json = format.toJson(usuarios);
-        System.out.println(json);
         return json;
     }
 
     @GetMapping("/{id}")
+    @ResponseBody
     public String get(@PathVariable Long id) {
         Usuario usuario = uS.get(id);
         String json = format.toJson(usuario);

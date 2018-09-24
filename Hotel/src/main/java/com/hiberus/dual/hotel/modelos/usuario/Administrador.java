@@ -12,6 +12,10 @@ import com.hiberus.dual.hotel.modelos.hotel.Reserva;
 @Entity
 public class Administrador extends Usuario{
 
+    //Ctor
+    public Administrador() {
+        super();
+    }
     public Administrador(String dni, String nombre, ArrayList<Reserva> reservas) {
         super();
     }

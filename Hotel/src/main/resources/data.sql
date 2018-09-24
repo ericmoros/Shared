@@ -1,0 +1,1 @@
+INSERT INTO USUARIO VALUES ('Administrador', 1, '26282110X', 'Eric', null);

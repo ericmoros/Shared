@@ -13,9 +13,14 @@ import com.hiberus.dual.hotel.modelos.hotel.Reserva;
  */
 @Entity
 public class Gerente extends Usuario {
+    // Atts
     @ManyToOne
     private Hotel hotel;
 
+    // Ctor
+    public Gerente() {
+        super();
+    }
     public Gerente(String dni, String nombre, ArrayList<Reserva> reservas) {
         super();
     }

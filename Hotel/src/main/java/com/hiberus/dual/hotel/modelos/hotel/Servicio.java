@@ -21,7 +21,5 @@ public class Servicio {
     private Long id;
     @Column(name="extra")
     private AtributoEnum extra;
-    @Column(name="referencia")
-    private String referencia;
     
 }
