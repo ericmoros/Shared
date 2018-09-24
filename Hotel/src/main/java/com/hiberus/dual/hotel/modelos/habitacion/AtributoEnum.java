@@ -1,5 +1,7 @@
 package com.hiberus.dual.hotel.modelos.habitacion;
 
+import javax.persistence.Entity;
+
 /**
  * atributos
  */

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -25,6 +26,8 @@ public class Hotel {
     private String calle;
     @Column(name="nombre")
     private String nombre;
+    @OneToOne
+    private Servicio servicio;
 
     //Ctor
     public Hotel() {

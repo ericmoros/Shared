@@ -23,8 +23,6 @@ public class Usuario {
     private String dni;
     @Column(name="nombre")
     private String nombre;
-    // @OneToMany(mappedBy = "id")
-    // private ArrayList<Reserva> reservas;
 
     //Ctor
     public Usuario() {

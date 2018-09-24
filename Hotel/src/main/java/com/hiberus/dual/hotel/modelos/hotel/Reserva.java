@@ -2,14 +2,14 @@ package com.hiberus.dual.hotel.modelos.hotel;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+import com.hiberus.dual.hotel.modelos.habitacion.Habitacion;
 import com.hiberus.dual.hotel.modelos.usuario.Usuario;
 
 import lombok.Data;
@@ -29,8 +29,10 @@ public class Reserva {
     private Date fechai;
     @Column(name = "fecha_f")
     private Date fechaf;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Usuario usuarios;
+    @OneToOne
+    private Usuario usuario;
+    @OneToOne
+    private Habitacion habitacion;
 
     //Ctor
     public Reserva() {

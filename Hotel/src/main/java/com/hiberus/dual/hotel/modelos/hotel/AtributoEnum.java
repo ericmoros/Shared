@@ -1,5 +1,7 @@
 package com.hiberus.dual.hotel.modelos.hotel;
 
+import javax.persistence.Entity;
+
 /**
  * atributos
  */
@@ -9,5 +11,4 @@ public enum AtributoEnum {
     ACTIVIDADES_RUTEO,
     GIMNASIO,
     PISCINA;
-    
 }
