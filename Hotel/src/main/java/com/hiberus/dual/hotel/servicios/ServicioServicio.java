@@ -8,10 +8,12 @@ import com.hiberus.dual.hotel.modelos.hotel.Servicio;
 import com.hiberus.dual.hotel.repositorios.ServicioRepositorio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * ServicioServicio
  */
+@Service
 public class ServicioServicio implements IServicioServicio {
 
     private ServicioRepositorio sR;
