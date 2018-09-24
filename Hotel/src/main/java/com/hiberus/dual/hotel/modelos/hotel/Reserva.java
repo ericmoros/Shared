@@ -25,9 +25,9 @@ public class Reserva {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "fecha_i")
+    @Column(name = "fecha_inicio")
     private Date fechai;
-    @Column(name = "fecha_f")
+    @Column(name = "fecha_final")
     private Date fechaf;
     @OneToOne
     private Usuario usuario;

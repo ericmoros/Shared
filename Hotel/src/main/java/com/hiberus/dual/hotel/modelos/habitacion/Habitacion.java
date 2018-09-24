@@ -39,7 +39,7 @@ public class Habitacion {
     @Column(name = "tipo")
     private HabitacionTipoEnum tipo;
     
-    @Column(name = "extra")
+    @Column(name = "extras")
     private AtributoEnum extra;
 
     @OneToOne
@@ -50,7 +50,7 @@ public class Habitacion {
     // private Reserva idReserva;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "es")
+    @Column(name = "estado")
     private EstadoEnum es;
 
     //Ctor
