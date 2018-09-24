@@ -13,7 +13,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-public class Usuario {
+public abstract class Usuario {
     // Atts
     @Id
     @Column(name="id")

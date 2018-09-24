@@ -1,6 +1,7 @@
 package com.hiberus.dual.hotel.modelos.habitacion;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,7 +41,7 @@ public class Habitacion {
     private HabitacionTipoEnum tipo;
     
     @Column(name = "extras")
-    private AtributoEnum extra;
+    private ArrayList<AtributoEnum> extra;
 
     @OneToOne
     private Hotel hotel;
@@ -58,7 +59,7 @@ public class Habitacion {
         super();
     }
 
-    public Habitacion(Hotel hotel, String numero, HabitacionTipoEnum tipo, AtributoEnum extra, Reserva res,
+    public Habitacion(Hotel hotel, String numero, HabitacionTipoEnum tipo, ArrayList<AtributoEnum> extra, Reserva res,
             EstadoEnum es) {
         // this.hotel = hotel;
         this.numero = numero;
@@ -72,7 +73,7 @@ public class Habitacion {
     // Methods
     public Float Coste(HabitacionTipoEnum tipo) {
         Float sum = null;
-        Float ex = new Float(1);
+        Float ex = new Float(extra.size());
         if (HabitacionTipoEnum.INDIVIDUAL.equals(tipo)) {
             sum = ex * 10.7F;
         } else if (HabitacionTipoEnum.DOBLE.equals(tipo)) {
