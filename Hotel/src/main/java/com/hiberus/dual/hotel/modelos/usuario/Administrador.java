@@ -10,7 +10,7 @@ import com.hiberus.dual.hotel.modelos.hotel.Reserva;
  * administrador
  */
 @Entity
-public class Administrador extends Usuario{
+public class Administrador extends Cliente{
 
     //Ctor
     public Administrador() {

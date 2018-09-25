@@ -1,4 +1,6 @@
-package com.hiberus.dual.hotel.modelos.hotel;
+package com.hiberus.dual.hotel.modelos.habitacion;
+
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,21 +11,25 @@ import javax.persistence.Id;
 import lombok.Data;
 
 /**
- * servicio
+ * Atributo
  */
 @Entity
 @Data
-public class Servicio {
+public class Extra {
     // Atts
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "extra")
+    @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "precio")
+    private BigDecimal precio;
+
     // Ctor
-    public Servicio() {
+    public Extra() {
     }
+
 }

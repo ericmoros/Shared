@@ -10,12 +10,13 @@ import com.hiberus.dual.hotel.modelos.hotel.Reserva;
  * cliente
  */
 @Entity
-public class Cliente extends Usuario{
-    
-    //Ctor
+public class Cliente extends Usuario {
+
+    // Ctor
     public Cliente() {
         super();
     }
+
     public Cliente(String dni, String nombre, ArrayList<Reserva> reservas) {
         super();
     }

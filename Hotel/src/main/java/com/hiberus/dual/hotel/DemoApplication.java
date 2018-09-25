@@ -8,6 +8,6 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-		System.out.println("app running at http://emoros-lpt/");
+		System.out.println("app running at http://emoros-lpt:81/");
 	}
 }

@@ -12,7 +12,7 @@ import com.hiberus.dual.hotel.modelos.hotel.Reserva;
  * gerente
  */
 @Entity
-public class Gerente extends Usuario {
+public class Gerente extends Cliente {
     // Atts
     @ManyToOne
     private Hotel hotel;
