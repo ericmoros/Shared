@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 
-public class ReservaServicio implements IReservaServicio{
+public class ReservaServicio implements IReservaServicio {
 
     private ReservaRepositorio rR;
 
@@ -33,7 +33,8 @@ public class ReservaServicio implements IReservaServicio{
     public Reserva get(Long id) {
         Reserva reserva = null;
         Optional<Reserva> oU = rR.findById(id);
-        if (oU.isPresent()) reserva = oU.get();
+        if (oU.isPresent())
+            reserva = oU.get();
         return reserva;
     }
 
@@ -46,7 +47,7 @@ public class ReservaServicio implements IReservaServicio{
     public void update(Reserva reserva) {
         add(reserva);// Por si cambia el método.
     }
- 
+
     @Override
     public void remove(Long id) {
         rR.deleteById(id);
