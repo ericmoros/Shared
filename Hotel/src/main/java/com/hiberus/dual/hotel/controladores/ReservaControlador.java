@@ -3,8 +3,8 @@ package com.hiberus.dual.hotel.controladores;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
-import com.hiberus.dual.hotel.modelos.habitacion.Habitacion;
-import com.hiberus.dual.hotel.servicios.HabitacionServicio;
+import com.hiberus.dual.hotel.modelos.hotel.Reserva;
+import com.hiberus.dual.hotel.servicios.ReservaServicio;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * HabitacionControlador
+ * ReservaControlador
  */
 @Controller
-@RequestMapping({ "/habitaciones", "/habitacion" })
-public class HabitacionControlador {
+@RequestMapping({ "/reservas", "/reserva" })
+public class ReservaControlador {
     // Atts
     private Gson format;
-    private HabitacionServicio hS;
+    private ReservaServicio rS;
 
     // Ctor
-    public HabitacionControlador(HabitacionServicio uS) {
-        this.hS = uS;
+    public ReservaControlador(ReservaServicio rS) {
+        this.rS = rS;
         format = new Gson();
     }
 
@@ -34,32 +34,32 @@ public class HabitacionControlador {
     @GetMapping({ "/all", "" })
     @ResponseBody
     public String getAll() {
-        ArrayList<Habitacion> habitaciones = hS.getAll();
-        String json = format.toJson(habitaciones);
+        ArrayList<Reserva> reservas = rS.getAll();
+        String json = format.toJson(reservas);
         return json;
     }
 
     @GetMapping("/{id}")
     @ResponseBody
     public String get(@PathVariable Long id) {
-        Habitacion habitacion = hS.get(id);
-        String json = format.toJson(habitacion);
+        Reserva reserva = rS.get(id);
+        String json = format.toJson(reserva);
         return json;
     }
 
     @PostMapping("/add")
-    public void add(@ModelAttribute("Habitacion") Habitacion habitacion) {
-        hS.add(habitacion);
+    public void add(@ModelAttribute("Reserva") Reserva reserva) {
+        rS.add(reserva);
     }
 
     @PostMapping("/update")
-    public void update(@ModelAttribute("Habitacion") Habitacion habitacion) {
-        hS.update(habitacion);
+    public void update(@ModelAttribute("Reserva") Reserva reserva) {
+        rS.update(reserva);
     }
 
     @GetMapping("/delete/{id}")
     public void remove(@PathVariable Long id) {
-        hS.remove(id);
+        rS.remove(id);
     }
 
 }

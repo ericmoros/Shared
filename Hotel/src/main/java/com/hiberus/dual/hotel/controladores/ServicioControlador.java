@@ -3,8 +3,8 @@ package com.hiberus.dual.hotel.controladores;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
-import com.hiberus.dual.hotel.modelos.habitacion.Habitacion;
-import com.hiberus.dual.hotel.servicios.HabitacionServicio;
+import com.hiberus.dual.hotel.modelos.hotel.Servicio;
+import com.hiberus.dual.hotel.servicios.ServicioServicio;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * HabitacionControlador
+ * ServicioControlador
  */
 @Controller
-@RequestMapping({ "/habitaciones", "/habitacion" })
-public class HabitacionControlador {
+@RequestMapping({ "/servicios", "/servicio" })
+public class ServicioControlador {
     // Atts
     private Gson format;
-    private HabitacionServicio hS;
+    private ServicioServicio uS;
 
     // Ctor
-    public HabitacionControlador(HabitacionServicio uS) {
-        this.hS = uS;
+    public ServicioControlador(ServicioServicio uS) {
+        this.uS = uS;
         format = new Gson();
     }
 
@@ -34,32 +34,32 @@ public class HabitacionControlador {
     @GetMapping({ "/all", "" })
     @ResponseBody
     public String getAll() {
-        ArrayList<Habitacion> habitaciones = hS.getAll();
-        String json = format.toJson(habitaciones);
+        ArrayList<Servicio> servicios = uS.getAll();
+        String json = format.toJson(servicios);
         return json;
     }
 
     @GetMapping("/{id}")
     @ResponseBody
     public String get(@PathVariable Long id) {
-        Habitacion habitacion = hS.get(id);
-        String json = format.toJson(habitacion);
+        Servicio servicio = uS.get(id);
+        String json = format.toJson(servicio);
         return json;
     }
 
     @PostMapping("/add")
-    public void add(@ModelAttribute("Habitacion") Habitacion habitacion) {
-        hS.add(habitacion);
+    public void add(@ModelAttribute("Servicio") Servicio servicio) {
+        uS.add(servicio);
     }
 
     @PostMapping("/update")
-    public void update(@ModelAttribute("Habitacion") Habitacion habitacion) {
-        hS.update(habitacion);
+    public void update(@ModelAttribute("Servicio") Servicio servicio) {
+        uS.update(servicio);
     }
 
     @GetMapping("/delete/{id}")
     public void remove(@PathVariable Long id) {
-        hS.remove(id);
+        uS.remove(id);
     }
 
 }
