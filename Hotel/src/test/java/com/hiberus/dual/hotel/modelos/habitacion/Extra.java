@@ -1,4 +1,4 @@
-package com.hiberus.dual.hotel.modelos;
+package com.hiberus.dual.hotel.modelos.habitacion;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +11,6 @@ public class Extra {
 
 	@Test
 	public void contextLoads() {
-	}
-
+    }
+    
 }
