@@ -31,7 +31,7 @@ public class Hotel {
 
     @Column(name = "nombre")
     private String nombre;
-    
+
     // Relations
     @OneToMany
     private List<Servicio> servicios;
@@ -41,9 +41,16 @@ public class Hotel {
     }
 
     public Hotel(String cif, String calle, String nombre) {
-        this.cif = cif;
+        this.cif = validateCif(cif);
         this.calle = calle;
         this.nombre = nombre;
+    }
+
+    // Methods
+    private String validateCif(String cif2) {
+        Validador validador = new Validador();
+		int e = validador.checkNif(input);
+        return null;
     }
 
 }
