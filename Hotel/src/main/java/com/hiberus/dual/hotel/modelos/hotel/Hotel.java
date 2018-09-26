@@ -41,16 +41,9 @@ public class Hotel {
     }
 
     public Hotel(String cif, String calle, String nombre) {
-        this.cif = validateCif(cif);
+        this.cif = cif;
         this.calle = calle;
         this.nombre = nombre;
-    }
-
-    // Methods
-    private String validateCif(String cif2) {
-        Validador validador = new Validador();
-		int e = validador.checkNif(input);
-        return null;
     }
 
 }

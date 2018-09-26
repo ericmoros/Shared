@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "hotel",
+                "projectName": "hotel",
+                "workingDirectory": "c:\\Users\\alopezv\\Desktop\\Shared\\Hotel",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "hotel",
+                "projectName": "hotel",
+                "workingDirectory": "c:\\Users\\alopezv\\Desktop\\Shared\\Hotel",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
