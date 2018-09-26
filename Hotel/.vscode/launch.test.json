@@ -5,7 +5,7 @@
             {
                 "name": "hotel",
                 "projectName": "hotel",
-                "workingDirectory": "c:\\Users\\alopezv\\Desktop\\Shared\\Hotel",
+                "workingDirectory": "c:\\Users\\emoros\\Documents\\Shared\\Hotel",
                 "args": [],
                 "vmargs": [],
                 "env": {},
@@ -19,7 +19,7 @@
             {
                 "name": "hotel",
                 "projectName": "hotel",
-                "workingDirectory": "c:\\Users\\alopezv\\Desktop\\Shared\\Hotel",
+                "workingDirectory": "c:\\Users\\emoros\\Documents\\Shared\\Hotel",
                 "args": [],
                 "vmargs": [],
                 "env": {},
