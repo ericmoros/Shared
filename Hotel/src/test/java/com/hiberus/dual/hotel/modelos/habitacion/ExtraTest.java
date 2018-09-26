@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 import com.hiberus.dual.hotel.repositorios.ExtraRepositorio;
-import com.hiberus.dual.hotel.servicios.ExtraServicio;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,12 +14,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestExtra {
+public class ExtraTest {
 
 	private ExtraRepositorio eR;
 
 	@Autowired
-	public TestExtra(ExtraRepositorio eR) {
+	public ExtraTest(ExtraRepositorio eR) {
 		this.eR = eR;
 	}
 
