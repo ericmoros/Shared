@@ -33,6 +33,8 @@ public class Reserva {
     private LocalDate fechai;
     @Column(name = "fecha_final")
     private LocalDate fechaf;
+    // @Column(name = "referencia")
+    // private String referencia;
     // Relations
     @OneToOne
     private Usuario usuario;
@@ -54,10 +56,9 @@ public class Reserva {
         return sum;
     }
 
-    public String referencia() {
-        String referencia = "";
-        referencia = fechai + "" + fechaf + "";
-        // TODO: habitaciones
-        return referencia;
-    }
+    // public String getReferencia() {
+    //     String referencia = "";
+    //     referencia = fechai + "" + fechaf + "" + usuario.getId();
+    //     return referencia;
+    // }
 }
