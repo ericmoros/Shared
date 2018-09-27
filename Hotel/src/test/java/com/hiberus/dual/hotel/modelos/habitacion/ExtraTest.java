@@ -23,65 +23,57 @@ public class ExtraTest {
 	}
 
 	@Test
-	public void testCreate() {
-		Extra extra = new Extra();
-		Optional<Extra> oRExtra = null;
-		Extra rExtra = null;
+	public void testRead() {
+		Extra extra = null;
+		Extra extraOld = null;
+		Optional<Extra> oExtra = null;
 
-		extra.setId(1L);
-		extra.setNombre("Testing");
-		extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
+		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		extraOld = new Extra(extra);
 		eR.save(extra);
-
-		oRExtra = eR.findById(extra.getId());
-		if (oRExtra.isPresent()) rExtra = oRExtra.get();
 		
-		Assert.assertNotNull(extra.getId());
-		Assert.assertEquals((Long)1L, rExtra.getId());
-		Assert.assertEquals("Testing", rExtra.getNombre());
-		Assert.assertEquals(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP), rExtra.getPrecio());
+		oExtra = eR.findById(extra.getId());
+
+		if (oExtra.isPresent()) extra = oExtra.get();
+		Assert.assertEquals(extraOld, extra);
+	}
+	
+	@Test
+	public void testCreate() {
+		Extra extra = null;
+		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		eR.save(extra);
 	}
 
 	@Test
 	public void testUpdate() {
-		Extra extra = new Extra();
-		Optional<Extra> oRExtra = null;
-		Extra rExtra = null;
+		Extra extra = null;
+		Extra extraNew = null;
+		Optional<Extra> oExtra = null;
 
-		extra.setId(1L);
-		extra.setNombre("Testing");
-		extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
+		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		extraNew = new Extra(1L, "Testing2", new BigDecimal("3").setScale(2, BigDecimal.ROUND_UP));
+
 		eR.save(extra);
+		eR.save(extraNew);
 		
-		extra.setId(1L);
-		extra.setNombre("Testing2");
-		extra.setPrecio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		eR.save(extra);
+		oExtra = eR.findById(extraNew.getId());
 
-		oRExtra = eR.findById(extra.getId());
-		if (oRExtra.isPresent())
-			rExtra = oRExtra.get();
-		Assert.assertNotNull(extra.getId());
-		Assert.assertEquals((Long) 1L, rExtra.getId());
-		Assert.assertEquals("Testing2", rExtra.getNombre());
-		Assert.assertEquals(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP), rExtra.getPrecio());
+		if (oExtra.isPresent()) extra = oExtra.get();
+		Assert.assertEquals(extraNew, extra);
 	}
 
 	@Test
 	public void testDelete() {
-		Extra extra = new Extra();
-		Optional<Extra> oRExtra = null;
+		Extra extra = null;
+		Optional<Extra> oExtra = null;
 
-		extra.setId(99L);
-		extra.setNombre("Testing5");
-		extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
-		extra = eR.save(extra);
-
+		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		eR.save(extra);
 		eR.deleteById(extra.getId());
 
-		oRExtra = eR.findById(extra.getId());
-		Assert.assertTrue(!oRExtra.isPresent());
+		oExtra = eR.findById(extra.getId());
+		Assert.assertTrue(!oExtra.isPresent());
 	}
 
-	
 }

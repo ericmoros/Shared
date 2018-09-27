@@ -36,5 +36,10 @@ public class Extra {
         this.nombre = nombre;
         this.precio = precio;
     }
+	public Extra(Extra extra) {
+        this.id = extra.getId();
+        this.nombre = extra.getNombre();
+        this.precio = extra.getPrecio();
+	}
     
 }
