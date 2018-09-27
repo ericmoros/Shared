@@ -50,7 +50,7 @@ public class ServicioTest {
 		servicio.setNombre("Testing");
 		sR.save(servicio);
 		
-		servicio.setId(2L);
+		servicio.setId(1L);
 		servicio.setNombre("Testing2");
 		sR.save(servicio);
 
@@ -58,7 +58,7 @@ public class ServicioTest {
 		if (oServicio.isPresent())
         rServicio = oServicio.get();
 		Assert.assertNotNull(servicio.getId());
-		Assert.assertEquals((Long) 2L, rServicio.getId());
+		Assert.assertEquals((Long) 1L, rServicio.getId());
 		Assert.assertEquals("Testing2", rServicio.getNombre());
 	}
 
