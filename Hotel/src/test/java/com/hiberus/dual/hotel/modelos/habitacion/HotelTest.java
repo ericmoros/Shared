@@ -28,7 +28,6 @@ public class HotelTest {
 		Optional<Hotel> oHotel = null;
 		Hotel rHotel = null;
 
-		hotel.setId(1L);
         hotel.setCif("A-94834311");
         hotel.setCalle("Calle Legumbre");
         hotel.setNombre("Hotel Patata");
@@ -38,7 +37,6 @@ public class HotelTest {
 		if (oHotel.isPresent()) rHotel = oHotel.get();
 		
 		Assert.assertNotNull(hotel.getId());
-        Assert.assertEquals((Long)1L, rHotel.getId());
         Assert.assertEquals("A-94834311", rHotel.getCif());
         Assert.assertEquals("Calle Legumbre", rHotel.getCalle());
 		Assert.assertEquals("Hotel Patata", rHotel.getNombre());
@@ -50,13 +48,11 @@ public class HotelTest {
 		Optional<Hotel> oHotel = null;
 		Hotel rHotel = null;
 
-		hotel.setId(1L);
         hotel.setCif("A-94834311");
         hotel.setCalle("Calle Legumbre");
         hotel.setNombre("Hotel Patata");
 		hR.save(hotel);
 		
-		hotel.setId(1L);
 		hotel.setCif("A-94809831");
         hotel.setCalle("Calle Languido");
         hotel.setNombre("Hotel Pepino");
@@ -66,7 +62,6 @@ public class HotelTest {
 		if (oHotel.isPresent())
         rHotel = oHotel.get();
 		Assert.assertNotNull(hotel.getId());
-        Assert.assertEquals((Long) 1L, rHotel.getId());
         Assert.assertEquals("A-94809831", rHotel.getCif());
         Assert.assertEquals("Calle Languido", rHotel.getCalle());
 		Assert.assertEquals("Hotel Pepino", rHotel.getNombre());

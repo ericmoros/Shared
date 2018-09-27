@@ -28,7 +28,6 @@ public class ServicioTest {
 		Optional<Servicio> oServicio = null;
 		Servicio rServicio = null;
 
-		servicio.setId(1L);
 		servicio.setNombre("Testing");
 		sR.save(servicio);
 
@@ -46,18 +45,16 @@ public class ServicioTest {
 		Optional<Servicio> oServicio = null;
 		Servicio rServicio = null;
 
-		servicio.setId(1L);
 		servicio.setNombre("Testing");
-		servicio = sR.save(servicio);
+		sR.save(servicio);
 		
-		servicio.setId(1L);
 		servicio.setNombre("Testing2");
 		sR.save(servicio);
 
 		oServicio = sR.findById(servicio.getId());
 		if (oServicio.isPresent()) rServicio = oServicio.get();
 		Assert.assertNotNull(servicio.getId());
-		Assert.assertEquals((Long) 1L, rServicio.getId());
+		Assert.assertEquals((Long) 2L, rServicio.getId());
 		Assert.assertEquals("Testing2", rServicio.getNombre());
 	}
 

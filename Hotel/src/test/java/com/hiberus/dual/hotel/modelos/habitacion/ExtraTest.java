@@ -28,7 +28,6 @@ public class ExtraTest {
 		Optional<Extra> oRExtra = null;
 		Extra rExtra = null;
 
-		extra.setId(1L);
 		extra.setNombre("Testing");
 		extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
@@ -37,7 +36,6 @@ public class ExtraTest {
 		if (oRExtra.isPresent()) rExtra = oRExtra.get();
 		
 		Assert.assertNotNull(extra.getId());
-		Assert.assertEquals((Long)1L, rExtra.getId());
 		Assert.assertEquals("Testing", rExtra.getNombre());
 		Assert.assertEquals(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP), rExtra.getPrecio());
 	}
@@ -48,12 +46,10 @@ public class ExtraTest {
 		Optional<Extra> oRExtra = null;
 		Extra rExtra = null;
 
-		extra.setId(1L);
 		extra.setNombre("Testing");
 		extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
 		
-		extra.setId(1L);
 		extra.setNombre("Testing2");
 		extra.setPrecio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
@@ -62,7 +58,6 @@ public class ExtraTest {
 		if (oRExtra.isPresent())
 			rExtra = oRExtra.get();
 		Assert.assertNotNull(extra.getId());
-		Assert.assertEquals((Long) 1L, rExtra.getId());
 		Assert.assertEquals("Testing2", rExtra.getNombre());
 		Assert.assertEquals(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP), rExtra.getPrecio());
 	}
