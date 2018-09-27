@@ -46,4 +46,10 @@ public class Hotel {
         this.nombre = nombre;
     }
 
+    public Hotel(Hotel hotel) {
+        this.cif = hotel.getCif();
+        this.calle = hotel.getCalle();
+        this.nombre = hotel.getNombre();
+    }
+
 }

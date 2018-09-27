@@ -26,4 +26,14 @@ public class Servicio {
     // Ctor
     public Servicio() {
     }
+
+    public Servicio(Long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public Servicio(Servicio servicio) {
+        this.id = servicio.getId();
+        this.nombre = servicio.getNombre();
+    }
 }
