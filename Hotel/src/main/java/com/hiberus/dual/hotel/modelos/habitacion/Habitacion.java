@@ -1,6 +1,5 @@
 package com.hiberus.dual.hotel.modelos.habitacion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.modelos.hotel.Hotel;
 
 import lombok.Data;
@@ -29,13 +29,17 @@ public class Habitacion {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado")
+    private EstadoEnum estado;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "hab_estado")
+    private HabitacionEstadoEnum habEstado;
+
     @Column(name = "numero")
     private String numero;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "estado")
-    private EstadoEnum es;
-    
     // Relations
     @OneToOne
     private HabitacionTipo tipo;
@@ -46,40 +50,54 @@ public class Habitacion {
     @OneToOne
     private Hotel hotel;
 
-    public Habitacion(Long id, String numero, EstadoEnum es, HabitacionTipo tipo, ArrayList<Extra> extras, Hotel hotel) {
+    
+    // Ctor
+    public Habitacion() {
+    }
+    
+    public Habitacion(Long id, EstadoEnum estado, HabitacionEstadoEnum habEstado, String numero, HabitacionTipo tipo, List<Extra> extras, Hotel hotel) {
         this.id = id;
+        this.estado = estado;
+        this.habEstado = habEstado;
         this.numero = numero;
-        this.es = es;
         this.tipo = tipo;
         this.extras = extras;
         this.hotel = hotel;
     }
 
-    // Ctor
-    public Habitacion() {
+    public Habitacion(Habitacion habitacion) {
+        this.id = habitacion.getId();
+        this.estado = habitacion.getEstado();
+        this.habEstado = habitacion.getHabEstado();
+        this.numero = habitacion.getNumero();
+        this.tipo = habitacion.getTipo();
+        this.extras = habitacion.getExtras();
+        this.hotel = habitacion.getHotel();
     }
 
-    // public Habitacion(Hotel hotel, String numero, HabitacionTipo tipo, List<Extra> extras, Reserva res,
-    //         EstadoEnum es) {
-    //     // this.hotel = hotel;
-    //     this.numero = numero;
-    //     this.tipo = tipo;
-    //     this.extras = extras;
-    //     // this.res = res;
-    //     this.es = es;
-    //     // Coste();
+
+    // public Habitacion(Hotel hotel, String numero, HabitacionTipo tipo,
+    // List<Extra> extras, Reserva res,
+    // EstadoEnum es) {
+    // // this.hotel = hotel;
+    // this.numero = numero;
+    // this.tipo = tipo;
+    // this.extras = extras;
+    // // this.res = res;
+    // this.es = es;
+    // // Coste();
     // }
 
     // Methods
     // public Float Coste() {
-    //     HabitacionTipoEnum tipo = null;
-    //     Float sum = null;
-    //     Float ex = new Float(extras.size());
-    //     if (HabitacionTipoEnum.INDIVIDUAL.equals(tipo)) {
-    //         sum = ex * 10.7F;
-    //     } else if (HabitacionTipoEnum.DOBLE.equals(tipo)) {
-    //         sum = ex * 21.4F;
-    //     }
-    //     return sum;
+    // HabitacionTipoEnum tipo = null;
+    // Float sum = null;
+    // Float ex = new Float(extras.size());
+    // if (HabitacionTipoEnum.INDIVIDUAL.equals(tipo)) {
+    // sum = ex * 10.7F;
+    // } else if (HabitacionTipoEnum.DOBLE.equals(tipo)) {
+    // sum = ex * 21.4F;
+    // }
+    // return sum;
     // }
 }

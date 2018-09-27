@@ -4,10 +4,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 
 import lombok.Data;
 
@@ -23,6 +27,10 @@ public class Hotel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado")
+    private EstadoEnum estado;
+
     @Column(name = "cif")
     private String cif;
 
@@ -31,17 +39,18 @@ public class Hotel {
 
     @Column(name = "nombre")
     private String nombre;
-
+    
     // Relations
     @OneToMany
     private List<Servicio> servicios;
-
+    
     // Ctor
     public Hotel() {
     }
-
-    public Hotel(Long id, String cif, String calle, String nombre) {
+    
+    public Hotel(Long id, EstadoEnum estado, String cif, String calle, String nombre) {
         this.id = id;
+        this.estado = estado;
         this.cif = cif;
         this.calle = calle;
         this.nombre = nombre;
@@ -49,6 +58,7 @@ public class Hotel {
 
     public Hotel(Hotel hotel) {
         this.id = hotel.getId();
+        this.estado = hotel.getEstado();
         this.cif = hotel.getCif();
         this.calle = hotel.getCalle();
         this.nombre = hotel.getNombre();

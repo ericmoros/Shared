@@ -2,6 +2,7 @@ package com.hiberus.dual.hotel.modelos.habitacion;
 
 import java.util.Optional;
 
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.modelos.hotel.Hotel;
 import com.hiberus.dual.hotel.repositorios.HotelRepositorio;
 
@@ -27,7 +28,7 @@ public class HotelTest {
 		Hotel hotelOld = null;
 		Optional<Hotel> oHotel = null;
 
-		hotel = new Hotel(1L, "A-94834311", "Calle Legumbre", "Hotel Patata");
+		hotel = new Hotel(1L, EstadoEnum.DESHABILITADO, "A-94834311", "Calle Legumbre", "Hotel Patata");
 		hotelOld = new Hotel(hotel);
 		hR.save(hotel);
 		
@@ -42,7 +43,7 @@ public class HotelTest {
 		Hotel hotel = null;
 		Hotel hotelOld = null;
 		Optional<Hotel> oHotel= null;
-		hotel = new Hotel(1L, "A-94834311", "Calle Legumbre", "Hotel Patata");
+		hotel = new Hotel(1L, EstadoEnum.DESHABILITADO, "A-94834311", "Calle Legumbre", "Hotel Patata");
 		hR.save(hotel);
 		hotelOld = new Hotel(hotel);
 
@@ -58,7 +59,7 @@ public class HotelTest {
 		Hotel hotelOld = null;
 		Optional<Hotel> oHotel = null;
 
-		hotel = new Hotel(1L, "A-94834311", "Calle Legumbre", "Hotel Patata");
+		hotel = new Hotel(1L, EstadoEnum.DESHABILITADO, "A-94834311", "Calle Legumbre", "Hotel Patata");
 		hR.save(hotel);
 		
 		hotel.setCif("A-94831342");
@@ -79,7 +80,7 @@ public class HotelTest {
 		Hotel hotel = null;
 		Optional<Hotel> oHotel = null;
 
-		hotel = new Hotel(1L, "A-94831342", "Calle Languido", "Hotel Pepino");
+		hotel = new Hotel(1L, EstadoEnum.DESHABILITADO, "A-94831342", "Calle Languido", "Hotel Pepino");
 		hotel = hR.save(hotel);
 		hR.deleteById(hotel.getId());
 

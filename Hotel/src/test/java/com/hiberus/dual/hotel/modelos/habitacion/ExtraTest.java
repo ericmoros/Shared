@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.repositorios.ExtraRepositorio;
 
 import org.junit.Assert;
@@ -32,7 +33,7 @@ public class ExtraTest {
 		Extra extraOld = null;
 		Optional<Extra> oExtra = null;
 		
-		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		extra = new Extra(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		extraOld = new Extra(extra);
 		eR.save(extra);
 		
@@ -50,11 +51,11 @@ public class ExtraTest {
 		extras = new ArrayList<Extra>(
 			Arrays.asList(
 				new Extra[] {
-					new Extra(4L, "Testing", new BigDecimal("2.5").setScale(2, BigDecimal.ROUND_UP)),
-					new Extra(5L, "Testing2", new BigDecimal("2.9").setScale(2, BigDecimal.ROUND_UP)),
-					new Extra(6L, "Testing3", new BigDecimal("2.2").setScale(2, BigDecimal.ROUND_UP)),
-					new Extra(7L, "Testing4", new BigDecimal("2.0").setScale(2, BigDecimal.ROUND_UP)),
-					new Extra(8L, "Testing5", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP)),
+					new Extra(4L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2.5").setScale(2, BigDecimal.ROUND_UP)),
+					new Extra(5L, EstadoEnum.DESHABILITADO, "Testing2", new BigDecimal("2.9").setScale(2, BigDecimal.ROUND_UP)),
+					new Extra(6L, EstadoEnum.DESHABILITADO, "Testing3", new BigDecimal("2.2").setScale(2, BigDecimal.ROUND_UP)),
+					new Extra(7L, EstadoEnum.DESHABILITADO, "Testing4", new BigDecimal("2.0").setScale(2, BigDecimal.ROUND_UP)),
+					new Extra(8L, EstadoEnum.DESHABILITADO, "Testing5", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP)),
 				}
 			)
 		);
@@ -71,7 +72,7 @@ public class ExtraTest {
 		Extra extra = null;
 		Extra extraOld = null;
 		Optional<Extra> oExtra = null;
-		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		extra = new Extra(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
 		extraOld = new Extra(extra);
 
@@ -87,7 +88,7 @@ public class ExtraTest {
 		Extra extraOld = null;
 		Optional<Extra> oExtra = null;
 
-		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		extra = new Extra(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
 		
 		extra.setNombre("Testing2");
@@ -106,7 +107,7 @@ public class ExtraTest {
 		Extra extra = null;
 		Optional<Extra> oExtra = null;
 
-		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		extra = new Extra(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		extra = eR.save(extra);
 		eR.deleteById(extra.getId());
 

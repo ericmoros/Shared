@@ -6,12 +6,15 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.modelos.habitacion.Extra;
 import com.hiberus.dual.hotel.modelos.habitacion.Habitacion;
 import com.hiberus.dual.hotel.modelos.usuario.Usuario;
@@ -29,22 +32,50 @@ public class Reserva {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado")
+    private EstadoEnum estado;
+
     @Column(name = "fecha_inicio")
     private LocalDate fechai;
+
     @Column(name = "fecha_final")
     private LocalDate fechaf;
+
     // @Column(name = "referencia")
     // private String referencia;
+
     // Relations
     @OneToOne
     private Usuario usuario;
+
     @OneToMany
     private List<Habitacion> habitaciones;
+
+    public Reserva(Long id, EstadoEnum estado, LocalDate fechai, LocalDate fechaf, Usuario usuario, List<Habitacion> habitaciones) {
+        this.id = id;
+        this.estado = estado;
+        this.fechai = fechai;
+        this.fechaf = fechaf;
+        this.usuario = usuario;
+        this.habitaciones = habitaciones;
+    }
+
+    public Reserva(Reserva reserva) {
+        this.id = reserva.getId();
+        this.estado = reserva.getEstado();
+        this.fechai = reserva.getFechai();
+        this.fechaf = reserva.getFechaf();
+        this.usuario = reserva.getUsuario();
+        this.habitaciones = reserva.getHabitaciones();
+    }
 
     // Ctor
     public Reserva() {
     }
 
+    // Methods
     public BigDecimal Precio(List<Habitacion> habitaciones) {
         BigDecimal sum = new BigDecimal("0").setScale(2, BigDecimal.ROUND_UP);
         for (Habitacion h : habitaciones) {
@@ -57,8 +88,8 @@ public class Reserva {
     }
 
     // public String getReferencia() {
-    //     String referencia = "";
-    //     referencia = fechai + "" + fechaf + "" + usuario.getId();
-    //     return referencia;
+    // String referencia = "";
+    // referencia = fechai + "" + fechaf + "" + usuario.getId();
+    // return referencia;
     // }
 }

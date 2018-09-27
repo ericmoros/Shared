@@ -4,6 +4,7 @@ package com.hiberus.dual.hotel.modelos.habitacion;
 /**
  * atributos
  */
+@Deprecated
 public enum AtributoEnum {
     TELEVISION,
     WIFI,
