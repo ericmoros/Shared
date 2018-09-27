@@ -27,9 +27,14 @@ public class Extra {
 
     @Column(name = "precio")
     private BigDecimal precio;
-
+    
     // Ctor
     public Extra() {
     }
-
+    public Extra(Long id, String nombre, BigDecimal precio) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+    
 }

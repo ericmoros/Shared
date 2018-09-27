@@ -1,5 +1,6 @@
 package com.hiberus.dual.hotel.modelos.habitacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -44,6 +45,15 @@ public class Habitacion {
 
     @OneToOne
     private Hotel hotel;
+
+    public Habitacion(Long id, String numero, EstadoEnum es, HabitacionTipo tipo, ArrayList<Extra> extras, Hotel hotel) {
+        this.id = id;
+        this.numero = numero;
+        this.es = es;
+        this.tipo = tipo;
+        this.extras = extras;
+        this.hotel = hotel;
+    }
 
     // Ctor
     public Habitacion() {

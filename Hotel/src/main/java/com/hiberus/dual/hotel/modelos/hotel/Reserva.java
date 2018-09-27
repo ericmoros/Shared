@@ -33,6 +33,8 @@ public class Reserva {
     private LocalDate fechai;
     @Column(name = "fecha_final")
     private LocalDate fechaf;
+    @Column(name = "referencia")
+    private String referencia;
     // Relations
     @OneToOne
     private Usuario usuario;
@@ -41,6 +43,7 @@ public class Reserva {
 
     // Ctor
     public Reserva() {
+        this.referencia = referencias();
     }
 
     public BigDecimal Precio(List<Habitacion> habitaciones) {
@@ -54,10 +57,9 @@ public class Reserva {
         return sum;
     }
 
-    public String referencia() {
-        String referencia = "";
-        referencia = fechai + "" + fechaf + "";
-        // TODO: habitaciones
+    public String referencias() {
+        String referencia;
+        referencia = fechai + "" + fechaf + "" + usuario.getId();
         return referencia;
     }
 }
