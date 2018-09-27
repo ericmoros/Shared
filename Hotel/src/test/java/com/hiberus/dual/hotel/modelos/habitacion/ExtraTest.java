@@ -48,19 +48,22 @@ public class ExtraTest {
 	@Test
 	public void testUpdate() {
 		Extra extra = null;
-		Extra extraNew = null;
+		Extra extraOld = null;
 		Optional<Extra> oExtra = null;
 
 		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		extraNew = new Extra(1L, "Testing2", new BigDecimal("3").setScale(2, BigDecimal.ROUND_UP));
-
 		eR.save(extra);
-		eR.save(extraNew);
 		
-		oExtra = eR.findById(extraNew.getId());
+		extra.setNombre("Testing2");
+		extra.setPrecio(new BigDecimal("3").setScale(2, BigDecimal.ROUND_UP));
+		eR.save(extra);
+		extraOld = new Extra(extra);
+
+		
+		oExtra = eR.findById(extra.getId());
 
 		if (oExtra.isPresent()) extra = oExtra.get();
-		Assert.assertEquals(extraNew, extra);
+		Assert.assertEquals(extraOld, extra);
 	}
 
 	@Test
@@ -69,7 +72,7 @@ public class ExtraTest {
 		Optional<Extra> oExtra = null;
 
 		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		eR.save(extra);
+		extra = eR.save(extra);
 		eR.deleteById(extra.getId());
 
 		oExtra = eR.findById(extra.getId());
