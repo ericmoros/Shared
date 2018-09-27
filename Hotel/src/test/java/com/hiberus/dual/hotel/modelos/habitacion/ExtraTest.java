@@ -41,8 +41,16 @@ public class ExtraTest {
 	@Test
 	public void testCreate() {
 		Extra extra = null;
+		Extra extraOld = null;
+		Optional<Extra> oExtra = null;
 		extra = new Extra(1L, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
+		extraOld = new Extra(extra);
+
+		oExtra = eR.findById(extra.getId());
+
+		if (oExtra.isPresent()) extra = oExtra.get();
+		Assert.assertEquals(extraOld, extra);
 	}
 
 	@Test

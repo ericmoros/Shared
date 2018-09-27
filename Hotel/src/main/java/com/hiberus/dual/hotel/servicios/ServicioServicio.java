@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.hiberus.dual.hotel.modelos.hotel.Servicio;
 import com.hiberus.dual.hotel.repositorios.ServicioRepositorio;
+import com.hiberus.dual.hotel.servicios.interfaces.IServicioServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
