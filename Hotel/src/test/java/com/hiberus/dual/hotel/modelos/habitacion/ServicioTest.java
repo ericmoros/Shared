@@ -41,8 +41,16 @@ public class ServicioTest {
 	@Test
 	public void testCreate() {
 		Servicio servicio = null;
+		Servicio servicioOld = null;
+		Optional<Servicio> oServicio = null;
 		servicio = new Servicio(1L, "Testing");
 		sR.save(servicio);
+		servicioOld = new Servicio(servicio);
+
+		oServicio = sR.findById(servicio.getId());
+
+		if (oServicio.isPresent()) servicio = oServicio.get();
+		Assert.assertEquals(servicioOld, servicio);
 	}
 
 	@Test

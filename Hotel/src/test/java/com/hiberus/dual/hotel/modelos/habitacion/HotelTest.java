@@ -27,7 +27,7 @@ public class HotelTest {
 		Hotel hotelOld = null;
 		Optional<Hotel> oHotel = null;
 
-		hotel = new Hotel("A-94834311", "Calle Legumbre", "Hotel Patata");
+		hotel = new Hotel(1L, "A-94834311", "Calle Legumbre", "Hotel Patata");
 		hotelOld = new Hotel(hotel);
 		hR.save(hotel);
 		
@@ -40,8 +40,16 @@ public class HotelTest {
 	@Test
 	public void testCreate() {
 		Hotel hotel = null;
-		hotel = new Hotel("A-94834311", "Calle Legumbre", "Hotel Patata");
+		Hotel hotelOld = null;
+		Optional<Hotel> oHotel= null;
+		hotel = new Hotel(1L, "A-94834311", "Calle Legumbre", "Hotel Patata");
 		hR.save(hotel);
+		hotelOld = new Hotel(hotel);
+
+		oHotel = hR.findById(hotel.getId());
+
+		if (oHotel.isPresent()) hotel = oHotel.get();
+		Assert.assertEquals(hotelOld, hotel);
 	}
 
 	@Test
@@ -50,7 +58,7 @@ public class HotelTest {
 		Hotel hotelOld = null;
 		Optional<Hotel> oHotel = null;
 
-		hotel = new Hotel("A-94834311", "Calle Legumbre", "Hotel Patata");
+		hotel = new Hotel(1L, "A-94834311", "Calle Legumbre", "Hotel Patata");
 		hR.save(hotel);
 		
 		hotel.setCif("A-94831342");
@@ -71,7 +79,7 @@ public class HotelTest {
 		Hotel hotel = null;
 		Optional<Hotel> oHotel = null;
 
-		hotel = new Hotel("A-94831342", "Calle Languido", "Hotel Pepino");
+		hotel = new Hotel(1L, "A-94831342", "Calle Languido", "Hotel Pepino");
 		hotel = hR.save(hotel);
 		hR.deleteById(hotel.getId());
 

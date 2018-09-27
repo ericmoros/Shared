@@ -40,13 +40,15 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(String cif, String calle, String nombre) {
+    public Hotel(Long id, String cif, String calle, String nombre) {
+        this.id = id;
         this.cif = cif;
         this.calle = calle;
         this.nombre = nombre;
     }
 
     public Hotel(Hotel hotel) {
+        this.id = hotel.getId();
         this.cif = hotel.getCif();
         this.calle = hotel.getCalle();
         this.nombre = hotel.getNombre();
