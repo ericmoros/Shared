@@ -66,7 +66,6 @@ public class ExtraTest {
 		extra.setPrecio(new BigDecimal("3").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
 		extraOld = new Extra(extra);
-
 		
 		oExtra = eR.findById(extra.getId());
 
