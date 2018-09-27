@@ -67,5 +67,20 @@ public class ExtraTest {
 		Assert.assertEquals(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP), rExtra.getPrecio());
 	}
 
+	// @Test
+	// public void testDelete() {
+	// 	Extra extra = new Extra();
+	// 	Optional<Extra> oRExtra = null;
+
+	// 	extra.setId(9999L);
+	// 	extra.setNombre("Testing");
+	// 	extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
+	// 	eR.save(extra);
+
+	// 	eR.delete(extra);
+	// 	oRExtra = eR.findById(extra.getId());
+	// 	Assert.assertTrue(!oRExtra.isPresent());
+	// }
+
 	
 }
