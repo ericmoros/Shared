@@ -23,51 +23,57 @@ public class ServicioTest {
 	}
 
 	@Test
-	public void testCreate() {
-		Servicio servicio = new Servicio();
+	public void testRead() {
+		Servicio servicio = null;
+		Servicio servicioOld = null;
 		Optional<Servicio> oServicio = null;
-		Servicio rServicio = null;
 
-		servicio.setNombre("Testing");
+		servicio = new Servicio(1L, "Testing");
+		servicioOld = new Servicio(servicio);
 		sR.save(servicio);
-
-		oServicio = sR.findById(servicio.getId());
-		if (oServicio.isPresent()) rServicio = oServicio.get();
 		
-		Assert.assertNotNull(servicio.getId());
-		Assert.assertEquals((Long)1L, rServicio.getId());
-		Assert.assertEquals("Testing", rServicio.getNombre());
+		oServicio = sR.findById(servicio.getId());
+
+		if (oServicio.isPresent()) servicio = oServicio.get();
+		Assert.assertEquals(servicioOld, servicio);
+	}
+	
+	@Test
+	public void testCreate() {
+		Servicio servicio = null;
+		servicio = new Servicio(1L, "Testing");
+		sR.save(servicio);
 	}
 
 	@Test
 	public void testUpdate() {
-		Servicio servicio = new Servicio();
+		Servicio servicio = null;
+		Servicio servicioOld = null;
 		Optional<Servicio> oServicio = null;
-		Servicio rServicio = null;
 
-		servicio.setNombre("Testing");
+		servicio = new Servicio(1L, "Testing");
 		sR.save(servicio);
 		
 		servicio.setNombre("Testing2");
 		sR.save(servicio);
+		servicioOld = new Servicio(servicio);
 
+		
 		oServicio = sR.findById(servicio.getId());
-		if (oServicio.isPresent()) rServicio = oServicio.get();
-		Assert.assertNotNull(servicio.getId());
-		Assert.assertEquals((Long) 2L, rServicio.getId());
-		Assert.assertEquals("Testing2", rServicio.getNombre());
+
+		if (oServicio.isPresent()) servicio = oServicio.get();
+		Assert.assertEquals(servicioOld, servicio);
 	}
 
 	@Test
 	public void testDelete() {
-		Servicio servicio = new Servicio();
+		Servicio servicio = null;
 		Optional<Servicio> oServicio = null;
 
-		servicio.setId(1L);
-		servicio.setNombre("Testing");
+		servicio = new Servicio(1L, "Testing");
 		servicio = sR.save(servicio);
+		sR.deleteById(servicio.getId());
 
-		sR.delete(servicio);
 		oServicio = sR.findById(servicio.getId());
 		Assert.assertTrue(!oServicio.isPresent());
 	}

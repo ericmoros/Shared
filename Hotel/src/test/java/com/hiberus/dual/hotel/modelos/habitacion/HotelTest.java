@@ -22,64 +22,61 @@ public class HotelTest {
 	public void contextLoads() {
 	}
 
+	public void testRead() {
+		Hotel hotel = null;
+		Hotel hotelOld = null;
+		Optional<Hotel> oHotel = null;
+
+		hotel = new Hotel("A-94834311", "Calle Legumbre", "Hotel Patata");
+		hotelOld = new Hotel(hotel);
+		hR.save(hotel);
+		
+		oHotel = hR.findById(hotel.getId());
+
+		if (oHotel.isPresent()) hotel = oHotel.get();
+		Assert.assertEquals(hotelOld, hotel);
+	}
+	
 	@Test
 	public void testCreate() {
-		Hotel hotel = new Hotel();
-		Optional<Hotel> oHotel = null;
-		Hotel rHotel = null;
-
-        hotel.setCif("A-94834311");
-        hotel.setCalle("Calle Legumbre");
-        hotel.setNombre("Hotel Patata");
+		Hotel hotel = null;
+		hotel = new Hotel("A-94834311", "Calle Legumbre", "Hotel Patata");
 		hR.save(hotel);
-
-		oHotel = hR.findById(hotel.getId());
-		if (oHotel.isPresent()) rHotel = oHotel.get();
-		
-		Assert.assertNotNull(hotel.getId());
-        Assert.assertEquals("A-94834311", rHotel.getCif());
-        Assert.assertEquals("Calle Legumbre", rHotel.getCalle());
-		Assert.assertEquals("Hotel Patata", rHotel.getNombre());
 	}
 
 	@Test
 	public void testUpdate() {
-		Hotel hotel = new Hotel();
+		Hotel hotel = null;
+		Hotel hotelOld = null;
 		Optional<Hotel> oHotel = null;
-		Hotel rHotel = null;
 
-        hotel.setCif("A-94834311");
-        hotel.setCalle("Calle Legumbre");
-        hotel.setNombre("Hotel Patata");
+		hotel = new Hotel("A-94834311", "Calle Legumbre", "Hotel Patata");
 		hR.save(hotel);
 		
-		hotel.setCif("A-94809831");
-        hotel.setCalle("Calle Languido");
-        hotel.setNombre("Hotel Pepino");
+		hotel.setCif("A-94831342");
+		hotel.setCalle("Calle Languido");
+		hotel.setNombre("Hotel Pepino");
 		hR.save(hotel);
+		hotelOld = new Hotel(hotel);
 
+		
 		oHotel = hR.findById(hotel.getId());
-		if (oHotel.isPresent())
-        rHotel = oHotel.get();
-		Assert.assertNotNull(hotel.getId());
-        Assert.assertEquals("A-94809831", rHotel.getCif());
-        Assert.assertEquals("Calle Languido", rHotel.getCalle());
-		Assert.assertEquals("Hotel Pepino", rHotel.getNombre());
+
+		if (oHotel.isPresent()) hotel = oHotel.get();
+		Assert.assertEquals(hotelOld, hotel);
 	}
 
-	// @Test
-	// public void testDelete() {
-	// 	Hotel hotel = new Hotel();
-	// 	Optional<Hotel> oHotel = null;
+	@Test
+	public void testDelete() {
+		Hotel hotel = null;
+		Optional<Hotel> oHotel = null;
 
-	// 	hotel.setId(9999L);
-	// 	hotel.setNombre("Testing");
-	// 	hR.save(hotel);
+		hotel = new Hotel("A-94831342", "Calle Languido", "Hotel Pepino");
+		hotel = hR.save(hotel);
+		hR.deleteById(hotel.getId());
 
-	// 	hR.delete(hotel);
-	// 	oHotel = hR.findById(hotel.getId());
-	// 	Assert.assertTrue(!oHotel.isPresent());
-	// }
-
+		oHotel = hR.findById(hotel.getId());
+		Assert.assertTrue(!oHotel.isPresent());
+	}
 	
 }
