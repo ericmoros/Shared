@@ -1,4 +1,4 @@
-package com.hiberus.dual.hotel.servicios;
+package com.hiberus.dual.hotel.servicios.interfaces;
 
 import java.util.ArrayList;
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.hiberus.dual.hotel.modelos.habitacion.Extra;
 import com.hiberus.dual.hotel.repositorios.ExtraRepositorio;
+import com.hiberus.dual.hotel.servicios.interfaces.IExtraServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
