@@ -53,7 +53,7 @@ public class ExtraTest {
 		extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
 		
-		extra.setId(2L);
+		extra.setId(1L);
 		extra.setNombre("Testing2");
 		extra.setPrecio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		eR.save(extra);
@@ -62,25 +62,26 @@ public class ExtraTest {
 		if (oRExtra.isPresent())
 			rExtra = oRExtra.get();
 		Assert.assertNotNull(extra.getId());
-		Assert.assertEquals((Long) 2L, rExtra.getId());
+		Assert.assertEquals((Long) 1L, rExtra.getId());
 		Assert.assertEquals("Testing2", rExtra.getNombre());
 		Assert.assertEquals(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP), rExtra.getPrecio());
 	}
 
-	// @Test
-	// public void testDelete() {
-	// 	Extra extra = new Extra();
-	// 	Optional<Extra> oRExtra = null;
+	@Test
+	public void testDelete() {
+		Extra extra = new Extra();
+		Optional<Extra> oRExtra = null;
 
-	// 	extra.setId(9999L);
-	// 	extra.setNombre("Testing");
-	// 	extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
-	// 	eR.save(extra);
+		extra.setId(99L);
+		extra.setNombre("Testing5");
+		extra.setPrecio(new BigDecimal("1").setScale(2, BigDecimal.ROUND_UP));
+		extra = eR.save(extra);
 
-	// 	eR.delete(extra);
-	// 	oRExtra = eR.findById(extra.getId());
-	// 	Assert.assertTrue(!oRExtra.isPresent());
-	// }
+		eR.deleteById(extra.getId());
+
+		oRExtra = eR.findById(extra.getId());
+		Assert.assertTrue(!oRExtra.isPresent());
+	}
 
 	
 }
