@@ -19,7 +19,7 @@ import lombok.Data;
  */
 @Entity
 @Data
-public class Extra {
+public class Atributo {
     // Atts
     @Id
     @Column(name = "id")
@@ -37,21 +37,21 @@ public class Extra {
     private BigDecimal precio;
 
     // Ctor
-    public Extra() {
+    public Atributo() {
     }
 
-    public Extra(Long id, EstadoEnum estado, String nombre, BigDecimal precio) {
+    public Atributo(Long id, EstadoEnum estado, String nombre, BigDecimal precio) {
         this.id = id;
         this.estado = estado;
         this.nombre = nombre;
         this.precio = precio;
     }
 
-    public Extra(Extra extra) {
-        this.id = extra.getId();
-        this.estado = extra.getEstado();
-        this.nombre = extra.getNombre();
-        this.precio = extra.getPrecio();
+    public Atributo(Atributo atributo) {
+        this.id = atributo.getId();
+        this.estado = atributo.getEstado();
+        this.nombre = atributo.getNombre();
+        this.precio = atributo.getPrecio();
     }
 
 }

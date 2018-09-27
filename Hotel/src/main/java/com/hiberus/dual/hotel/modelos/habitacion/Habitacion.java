@@ -17,6 +17,8 @@ import com.hiberus.dual.hotel.modelos.hotel.Hotel;
 
 import lombok.Data;
 
+
+
 /**
  * habitacion
  */
@@ -45,7 +47,7 @@ public class Habitacion {
     private HabitacionTipo tipo;
 
     @ManyToMany
-    private List<Extra> extras;
+    private List<Atributo> atributo;
 
     @OneToOne
     private Hotel hotel;
@@ -55,13 +57,13 @@ public class Habitacion {
     public Habitacion() {
     }
     
-    public Habitacion(Long id, EstadoEnum estado, HabitacionEstadoEnum habEstado, String numero, HabitacionTipo tipo, List<Extra> extras, Hotel hotel) {
+    public Habitacion(Long id, EstadoEnum estado, HabitacionEstadoEnum habEstado, String numero, HabitacionTipo tipo, List<Atributo> atributo, Hotel hotel) {
         this.id = id;
         this.estado = estado;
         this.habEstado = habEstado;
         this.numero = numero;
         this.tipo = tipo;
-        this.extras = extras;
+        this.atributo = atributo;
         this.hotel = hotel;
     }
 
@@ -71,7 +73,7 @@ public class Habitacion {
         this.habEstado = habitacion.getHabEstado();
         this.numero = habitacion.getNumero();
         this.tipo = habitacion.getTipo();
-        this.extras = habitacion.getExtras();
+        this.atributo = habitacion.getAtributo();
         this.hotel = habitacion.getHotel();
     }
 

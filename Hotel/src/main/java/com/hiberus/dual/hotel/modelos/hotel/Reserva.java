@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.hiberus.dual.hotel.modelos.EstadoEnum;
-import com.hiberus.dual.hotel.modelos.habitacion.Extra;
+import com.hiberus.dual.hotel.modelos.habitacion.Atributo;
 import com.hiberus.dual.hotel.modelos.habitacion.Habitacion;
 import com.hiberus.dual.hotel.modelos.usuario.Usuario;
 
@@ -80,7 +80,7 @@ public class Reserva {
         BigDecimal sum = new BigDecimal("0").setScale(2, BigDecimal.ROUND_UP);
         for (Habitacion h : habitaciones) {
             sum = sum.add(h.getTipo().getPrecio());
-            for (Extra e : h.getExtras()) {
+            for (Atributo e : h.getAtributo()) {
                 sum = sum.add(e.getPrecio());
             }
         }
