@@ -33,6 +33,9 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(name = "referencia")
+    private String referencia;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
     private EstadoEnum estado;
@@ -53,8 +56,9 @@ public class Reserva {
     @OneToMany
     private List<Habitacion> habitaciones;
 
-    public Reserva(Long id, EstadoEnum estado, LocalDate fechai, LocalDate fechaf, Usuario usuario, List<Habitacion> habitaciones) {
+    public Reserva(Long id, String referencia, EstadoEnum estado, LocalDate fechai, LocalDate fechaf, Usuario usuario, List<Habitacion> habitaciones) {
         this.id = id;
+        this.referencia = referencia;
         this.estado = estado;
         this.fechai = fechai;
         this.fechaf = fechaf;
@@ -64,6 +68,7 @@ public class Reserva {
 
     public Reserva(Reserva reserva) {
         this.id = reserva.getId();
+        this.referencia = reserva.getReferencia();
         this.estado = reserva.getEstado();
         this.fechai = reserva.getFechai();
         this.fechaf = reserva.getFechaf();
@@ -87,9 +92,9 @@ public class Reserva {
         return sum;
     }
 
-    // public String getReferencia() {
-    // String referencia = "";
-    // referencia = fechai + "" + fechaf + "" + usuario.getId();
-    // return referencia;
-    // }
+    public String getReferencia() {
+        String referencia = "";
+        referencia = fechai + "" + fechaf + "" + usuario.getId();
+        return referencia;
+    }
 }
