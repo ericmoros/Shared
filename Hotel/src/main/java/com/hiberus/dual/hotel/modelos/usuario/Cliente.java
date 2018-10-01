@@ -19,8 +19,10 @@ public class Cliente extends Usuario {
     }
 
     public Cliente(Long id, EstadoEnum estado, String dni, String nombre, ArrayList<Reserva> reservas) {
-        super();
+        super(id, estado, dni, nombre);
     }
 
-    
+    public Cliente(Cliente cliente) {
+        super(cliente.getId(), cliente.getEstado(), cliente.getDni(), cliente.getNombre());
+    }
 }
