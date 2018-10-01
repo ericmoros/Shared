@@ -33,8 +33,8 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "referencia")
-    private String referencia;
+    // @Column(name = "referencia")
+    // private String referencia;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
@@ -56,9 +56,8 @@ public class Reserva {
     @OneToMany
     private List<Habitacion> habitaciones;
 
-    public Reserva(Long id, String referencia, EstadoEnum estado, LocalDate fechai, LocalDate fechaf, Usuario usuario, List<Habitacion> habitaciones, BigDecimal precio) {
+    public Reserva(Long id, EstadoEnum estado, LocalDate fechai, LocalDate fechaf, Usuario usuario, List<Habitacion> habitaciones, BigDecimal precio) { // TODO: String referencia
         this.id = id;
-        this.referencia = referencia;
         this.estado = estado;
         this.fechai = fechai;
         this.fechaf = fechaf;
@@ -69,7 +68,7 @@ public class Reserva {
 
     public Reserva(Reserva reserva) {
         this.id = reserva.getId();
-        this.referencia = reserva.getReferencia();
+        // this.referencia = reserva.getReferencia();
         this.estado = reserva.getEstado();
         this.fechai = reserva.getFechai();
         this.fechaf = reserva.getFechaf();
@@ -80,6 +79,42 @@ public class Reserva {
 
     // Ctor
     public Reserva() {
+    }
+
+    //Fluents
+    public Reserva id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Reserva estado(EstadoEnum estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public Reserva fechai(LocalDate fechai) {
+        this.fechai = fechai;
+        return this;
+    }
+
+    public Reserva fechaf(LocalDate fechaf) {
+        this.fechaf = fechaf;
+        return this;
+    }
+
+    public Reserva precio(BigDecimal precio) {
+        this.precio = precio;
+        return this;
+    }
+
+    public Reserva usuario(Usuario usuario) {
+        this.usuario = usuario;
+        return this;
+    }
+
+    public Reserva habitaciones(List<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+        return this;
     }
 
     // Methods
@@ -94,11 +129,11 @@ public class Reserva {
         return sum;
     }
 
-    public String getReferencia() {
-        String referencia = "";
-        referencia = fechai + "" + usuario.getId();
-        return referencia;
-    }
+    // public String getReferencia() {
+    //     String referencia = "";
+    //     referencia = fechai.toString() + "" + usuario.getId();
+    //     return referencia;
+    // }
 
     
 }

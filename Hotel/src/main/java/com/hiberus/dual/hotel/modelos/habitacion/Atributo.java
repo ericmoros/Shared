@@ -54,4 +54,26 @@ public class Atributo {
         this.precio = atributo.getPrecio();
     }
 
+    //Fluents
+    public Atributo id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Atributo estado(EstadoEnum estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public Atributo nombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    public Atributo precio(BigDecimal precio) {
+        this.precio = precio;
+        return this;
+    }
+
+
 }

@@ -52,5 +52,26 @@ public abstract class Usuario {
         this.nombre = usuario.getNombre();
     }
 
+    //Fluents
+    public Usuario id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Usuario estado(EstadoEnum estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public Usuario dni(String dni) {
+        this.dni = dni;
+        return this;
+    }
+
+    public Usuario nombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
     
 }

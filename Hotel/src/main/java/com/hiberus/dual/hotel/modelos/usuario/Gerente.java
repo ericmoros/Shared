@@ -1,12 +1,10 @@
 package com.hiberus.dual.hotel.modelos.usuario;
 
-import java.util.ArrayList;
-
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.modelos.hotel.Hotel;
-import com.hiberus.dual.hotel.modelos.hotel.Reserva;
 
 /**
  * gerente
@@ -21,9 +19,12 @@ public class Gerente extends Cliente {
     public Gerente() {
         super();
     }
-    public Gerente(String dni, String nombre, ArrayList<Reserva> reservas) {
-        super();
+    
+    public Gerente(Long id, EstadoEnum estado, String dni, String nombre) {
+        super(id, estado, dni, nombre);
     }
 
-    
+    public Gerente(Gerente administrador) {
+        super(administrador.getId(), administrador.getEstado(), administrador.getDni(), administrador.getNombre());
+    }
 }

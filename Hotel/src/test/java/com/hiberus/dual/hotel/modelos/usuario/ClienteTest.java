@@ -1,4 +1,4 @@
-package com.hiberus.dual.hotel.modelos.habitacion;
+package com.hiberus.dual.hotel.modelos.usuario;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +34,7 @@ public class ClienteTest {
 		Cliente clientesOld = null;
 		Optional<Usuario> oCliente = null;
 		
-		cliente = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
+		cliente = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin");
 		clientesOld = new Cliente(cliente);
 		uR.save(cliente);
 		
@@ -52,11 +52,11 @@ public class ClienteTest {
 		clientes = new ArrayList<Usuario>(
 			Arrays.asList(
 				new Cliente[] {
-					new Cliente(8L, EstadoEnum.DESHABILITADO, "DNI-Test", "Marcos", null),
-					new Cliente(9L, EstadoEnum.DESHABILITADO, "DNI-Test2", "Agustin", null),
-					new Cliente(10L, EstadoEnum.DESHABILITADO, "DNI-Test3", "Pepe", null),
-					new Cliente(11L, EstadoEnum.DESHABILITADO, "DNI-Test4", "Diego", null),
-					new Cliente(12L, EstadoEnum.DESHABILITADO, "DNI-Test5", "Martin", null)
+					new Cliente(8L, EstadoEnum.DESHABILITADO, "DNI-Test", "Marcos"),
+					new Cliente(9L, EstadoEnum.DESHABILITADO, "DNI-Test2", "Agustin"),
+					new Cliente(10L, EstadoEnum.DESHABILITADO, "DNI-Test3", "Pepe"),
+					new Cliente(11L, EstadoEnum.DESHABILITADO, "DNI-Test4", "Diego"),
+					new Cliente(12L, EstadoEnum.DESHABILITADO, "DNI-Test5", "Martin")
 				}
 			)
 		);
@@ -73,7 +73,7 @@ public class ClienteTest {
 		Cliente clientes = null;
 		Cliente clientesOld = null;
 		Optional<Usuario> oCliente = null;
-		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
+		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin");
 		uR.save(clientes);
 		clientesOld = new Cliente(clientes);
 
@@ -89,7 +89,7 @@ public class ClienteTest {
 		Cliente clientesOld = null;
 		Optional<Usuario> oCliente = null;
 
-		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
+		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin");
 		uR.save(clientes);
         
         clientes.setEstado(EstadoEnum.DESHABILITADO);
@@ -109,12 +109,16 @@ public class ClienteTest {
 		Cliente clientes = null;
 		Optional<Usuario> oCliente = null;
 
-		clientes = new Cliente(1L, EstadoEnum.DESHABILITADO, "DNI-Test", "Agustin", null);
-		clientes = uR.save(clientes);
-		uR.deleteById(clientes.getId());
-
+		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin");
+		uR.save(clientes);
+        
+        clientes.setEstado(EstadoEnum.BORRADO);
+		uR.save(clientes);
+		
 		oCliente = uR.findById(clientes.getId());
-		Assert.assertTrue(!oCliente.isPresent());
+
+		if (oCliente.isPresent()) clientes = (Cliente) oCliente.get();
+		Assert.assertEquals(EstadoEnum.BORRADO, clientes.getEstado());
 	}
 	
 }

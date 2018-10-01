@@ -1,7 +1,8 @@
-package com.hiberus.dual.hotel.modelos.habitacion;
+package com.hiberus.dual.hotel.modelos.hotel;
 
 import java.util.Optional;
 
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.modelos.hotel.Servicio;
 import com.hiberus.dual.hotel.repositorios.ServicioRepositorio;
 
@@ -79,11 +80,16 @@ public class ServicioTest {
 		Optional<Servicio> oServicio = null;
 
 		servicio = new Servicio(1L, "Testing");
-		servicio = sR.save(servicio);
-		sR.deleteById(servicio.getId());
+		sR.save(servicio);
+		
+		servicio.setEstado(EstadoEnum.BORRADO);
+		sR.save(servicio);
 
+		
 		oServicio = sR.findById(servicio.getId());
-		Assert.assertTrue(!oServicio.isPresent());
+
+		if (oServicio.isPresent()) servicio = oServicio.get();
+		Assert.assertEquals(EstadoEnum.BORRADO, servicio.getEstado());
 	}
 
 	

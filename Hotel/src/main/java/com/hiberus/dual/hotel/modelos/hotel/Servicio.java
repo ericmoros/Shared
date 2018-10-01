@@ -45,5 +45,21 @@ public class Servicio {
         this.nombre = servicio.getNombre();
     }
 
+    //Fluents
+    public Servicio id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Servicio estado(EstadoEnum estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public Servicio nombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
     
 }

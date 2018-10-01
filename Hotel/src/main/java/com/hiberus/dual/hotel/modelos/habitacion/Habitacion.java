@@ -51,7 +51,6 @@ public class Habitacion {
 
     @OneToOne
     private Hotel hotel;
-
     
     // Ctor
     public Habitacion() {
@@ -77,6 +76,41 @@ public class Habitacion {
         this.hotel = habitacion.getHotel();
     }
 
+    //Fluents
+    public Habitacion id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Habitacion estado(EstadoEnum estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public Habitacion habEstado(HabitacionEstadoEnum habEstado) {
+        this.habEstado = habEstado;
+        return this;
+    }
+
+    public Habitacion numero(String numero) {
+        this.numero = numero;
+        return this;
+    }
+
+    public Habitacion tipo(HabitacionTipo tipo) {
+        this.tipo = tipo;
+        return this;
+    }
+
+    public Habitacion atributo(List<Atributo> atributo) {
+        this.atributo = atributo;
+        return this;
+    }
+
+    public Habitacion hotel(Hotel hotel) {
+        this.hotel = hotel;
+        return this;
+    }
 
     // public Habitacion(Hotel hotel, String numero, HabitacionTipo tipo,
     // List<Extra> extras, Reserva res,

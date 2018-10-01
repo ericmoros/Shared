@@ -1,4 +1,4 @@
-package com.hiberus.dual.hotel.modelos.habitacion;
+package com.hiberus.dual.hotel.modelos.hotel;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,15 +25,15 @@ public class ReservaTest {
 	public void contextLoads() {
 	}
 
+	@Test
 	public void testRead() {
 		Reserva reserva = null;
 		Reserva reservaOld = null;
-		Optional<Reserva> oReserva = null;
-
-		reserva = new Reserva(1L, null, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		reservaOld = new Reserva(reserva);
+		Optional<Reserva> oReserva= null;
+		reserva = new Reserva(1L, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, null);
 		rR.save(reserva);
-		
+		reservaOld = new Reserva(reserva);
+
 		oReserva = rR.findById(reserva.getId());
 
 		if (oReserva.isPresent()) reserva = oReserva.get();
@@ -45,7 +45,7 @@ public class ReservaTest {
 		Reserva reserva = null;
 		Reserva reservaOld = null;
 		Optional<Reserva> oReserva= null;
-		reserva = new Reserva(1L, null, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		reserva = new Reserva(1L, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, null);
 		rR.save(reserva);
 		reservaOld = new Reserva(reserva);
 
@@ -61,10 +61,10 @@ public class ReservaTest {
 		Reserva reservaOld = null;
 		Optional<Reserva> oReserva = null;
 
-		reserva = new Reserva(1L, null, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		reserva = new Reserva(1L, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, null);
 		rR.save(reserva);
 		
-		reserva.setEstado(EstadoEnum.BORRADO);
+		reserva.setEstado(EstadoEnum.HABILITADO);
 		reserva.setFechai(LocalDate.now());
 		reserva.setFechaf(LocalDate.now());
 		rR.save(reserva);
@@ -82,12 +82,16 @@ public class ReservaTest {
 		Reserva reserva = null;
 		Optional<Reserva> oReserva = null;
 
-		reserva = new Reserva(1L, null, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		reserva = rR.save(reserva);
-		rR.deleteById(reserva.getId());
-
+		reserva = new Reserva(1L, EstadoEnum.DESHABILITADO, LocalDate.now(), LocalDate.now(), null, null, null);
+		rR.save(reserva);
+		
+		reserva.setEstado(EstadoEnum.BORRADO);
+		rR.save(reserva);
+		
 		oReserva = rR.findById(reserva.getId());
-		Assert.assertTrue(!oReserva.isPresent());
+
+		if (oReserva.isPresent()) reserva = oReserva.get();
+		Assert.assertEquals(EstadoEnum.BORRADO, reserva.getEstado());
 	}
 	
 	

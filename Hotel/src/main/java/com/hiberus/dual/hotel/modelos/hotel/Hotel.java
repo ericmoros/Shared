@@ -43,17 +43,18 @@ public class Hotel {
     // Relations
     @OneToMany
     private List<Servicio> servicios;
-    
+
     // Ctor
     public Hotel() {
     }
     
-    public Hotel(Long id, EstadoEnum estado, String cif, String calle, String nombre) {
+    public Hotel(Long id, EstadoEnum estado, String cif, String calle, String nombre, List<Servicio> servicios) {
         this.id = id;
         this.estado = estado;
         this.cif = cif;
         this.calle = calle;
         this.nombre = nombre;
+        this.servicios = servicios;
     }
 
     public Hotel(Hotel hotel) {
@@ -62,7 +63,39 @@ public class Hotel {
         this.cif = hotel.getCif();
         this.calle = hotel.getCalle();
         this.nombre = hotel.getNombre();
+        this.servicios = hotel.getServicios();
     }
 
+    //Fluents
+    public Hotel id(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Hotel estado(EstadoEnum estado) {
+        this.estado = estado;
+        return this;
+    }
+
+    public Hotel cif(String cif) {
+        this.cif = cif;
+        return this;
+    }
+
+    public Hotel calle(String calle) {
+        this.calle = calle;
+        return this;
+    }
+
+    public Hotel nombre(String nombre) {
+        this.nombre = nombre;
+        return this;
+    }
+
+    public Hotel servicios(List<Servicio> servicios) {
+        this.servicios = servicios;
+        return this;
+    }
     
+
 }

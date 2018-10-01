@@ -33,9 +33,8 @@ public class AtributoTest {
 		Atributo atributoOld = null;
 		Optional<Atributo> oAtributo = null;
 		
-		atributo = new Atributo(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		atributoOld = new Atributo(atributo);
-		aR.save(atributo);
+		atributo = new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		atributoOld = aR.save(atributo);
 		
 		oAtributo = aR.findById(atributo.getId());
 		
@@ -45,22 +44,22 @@ public class AtributoTest {
 	
 	@Test
 	public void testReadAll() { // El test individual no funciona.
+		aR.deleteAll();
 		List<Atributo> atributos = null;
 		List<Atributo> atributosOld = null;
 
 		atributos = new ArrayList<Atributo>(
 			Arrays.asList(
 				new Atributo[] {
-					new Atributo(8L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2.5").setScale(2, BigDecimal.ROUND_UP)),
-					new Atributo(9L, EstadoEnum.DESHABILITADO, "Testing2", new BigDecimal("2.9").setScale(2, BigDecimal.ROUND_UP)),
-					new Atributo(10L, EstadoEnum.DESHABILITADO, "Testing3", new BigDecimal("2.2").setScale(2, BigDecimal.ROUND_UP)),
-					new Atributo(11L, EstadoEnum.DESHABILITADO, "Testing4", new BigDecimal("2.0").setScale(2, BigDecimal.ROUND_UP)),
-					new Atributo(12L, EstadoEnum.DESHABILITADO, "Testing5", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP)),
+					new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing1").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP)),
+					new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing2").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP)),
+					new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing3").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP)),
+					new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing4").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP)),
+					new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing5").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP))
 				}
 			)
 		);
-		atributosOld = new ArrayList<Atributo>(atributos);
-		aR.saveAll(atributos);
+		atributosOld = (List<Atributo>) aR.saveAll(atributos);
 
 		atributos = (List<Atributo>) aR.findAll();
 		Assert.assertEquals(atributosOld, atributos);
@@ -72,9 +71,8 @@ public class AtributoTest {
 		Atributo atributo = null;
 		Atributo atributoOld = null;
 		Optional<Atributo> oAtributo = null;
-		atributo = new Atributo(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		aR.save(atributo);
-		atributoOld = new Atributo(atributo);
+		atributo = new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing1").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		atributoOld = aR.save(atributo);
 
 		oAtributo = aR.findById(atributo.getId());
 
@@ -88,13 +86,12 @@ public class AtributoTest {
 		Atributo atributoOld = null;
 		Optional<Atributo> oAtributo = null;
 
-		atributo = new Atributo(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
-		aR.save(atributo);
+		atributo = new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing1").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		atributo = aR.save(atributo);
 		
 		atributo.setNombre("Testing2");
 		atributo.setPrecio(new BigDecimal("3").setScale(2, BigDecimal.ROUND_UP));
-		aR.save(atributo);
-		atributoOld = new Atributo(atributo);
+		atributoOld = aR.save(atributo);
 		
 		oAtributo = aR.findById(atributo.getId());
 
@@ -107,12 +104,16 @@ public class AtributoTest {
 		Atributo atributo = null;
 		Optional<Atributo> oAtributo = null;
 
-		atributo = new Atributo(1L, EstadoEnum.DESHABILITADO, "Testing", new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
+		atributo = new Atributo().estado(EstadoEnum.DESHABILITADO).nombre("Testing1").precio(new BigDecimal("2").setScale(2, BigDecimal.ROUND_UP));
 		atributo = aR.save(atributo);
-		aR.deleteById(atributo.getId());
-
+		
+		atributo.setEstado(EstadoEnum.BORRADO);
+		atributo = aR.save(atributo);
+		
 		oAtributo = aR.findById(atributo.getId());
-		Assert.assertTrue(!oAtributo.isPresent());
+
+		if (oAtributo.isPresent()) atributo = oAtributo.get();
+		Assert.assertEquals(EstadoEnum.BORRADO, atributo.getEstado());
 	}
 	
 }
