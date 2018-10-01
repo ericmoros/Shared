@@ -18,4 +18,6 @@ public interface IHotelServicio {
     void update(Hotel hotel);
 
     void remove(Long id);
+
+    
 }

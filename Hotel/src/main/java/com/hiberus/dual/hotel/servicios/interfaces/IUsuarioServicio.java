@@ -19,4 +19,6 @@ public interface IUsuarioServicio {
     void update(Usuario usuario);
 
     void remove(Long id);
+
+    
 }

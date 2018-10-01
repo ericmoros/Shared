@@ -52,4 +52,5 @@ public abstract class Usuario {
         this.nombre = usuario.getNombre();
     }
 
+    
 }

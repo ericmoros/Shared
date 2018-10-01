@@ -24,4 +24,6 @@ public class Gerente extends Cliente {
     public Gerente(String dni, String nombre, ArrayList<Reserva> reservas) {
         super();
     }
+
+    
 }

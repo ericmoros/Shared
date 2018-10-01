@@ -51,4 +51,6 @@ public class HotelServicio implements IHotelServicio {
     public void remove(Long id) {
         hR.deleteById(id);
     }
+
+    
 }

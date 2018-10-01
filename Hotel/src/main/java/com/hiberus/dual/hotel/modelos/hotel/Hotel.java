@@ -64,4 +64,5 @@ public class Hotel {
         this.nombre = hotel.getNombre();
     }
 
+    
 }

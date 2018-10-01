@@ -31,4 +31,6 @@ public class HabitacionTipo {
     // Ctor
     public HabitacionTipo() {
     }
+
+
 }

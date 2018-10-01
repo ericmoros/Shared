@@ -51,4 +51,6 @@ public class HabitacionServicio implements IHabitacionServicio{
     public void remove(Long id) {
         hR.deleteById(id);
     }
+
+    
 }

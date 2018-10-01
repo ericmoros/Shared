@@ -20,4 +20,6 @@ public interface IAtributoServicio {
     void update(Atributo atributo);
 
     void remove(Long id);
+
+    
 }
