@@ -33,6 +33,7 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Id
     @Column(name = "referencia")
     private String referencia;
 
@@ -46,6 +47,9 @@ public class Reserva {
     @Column(name = "fecha_final")
     private LocalDate fechaf;
 
+    @Column(name = "precio")
+    private BigDecimal precio = new BigDecimal("0").setScale(2, BigDecimal.ROUND_UP);
+
     // Relations
     @OneToOne
     private Usuario usuario;
@@ -53,7 +57,7 @@ public class Reserva {
     @OneToMany
     private List<Habitacion> habitaciones;
 
-    public Reserva(Long id, String referencia, EstadoEnum estado, LocalDate fechai, LocalDate fechaf, Usuario usuario, List<Habitacion> habitaciones) {
+    public Reserva(Long id, String referencia, EstadoEnum estado, LocalDate fechai, LocalDate fechaf, Usuario usuario, List<Habitacion> habitaciones, BigDecimal precio) {
         this.id = id;
         this.referencia = referencia;
         this.estado = estado;
@@ -61,6 +65,7 @@ public class Reserva {
         this.fechaf = fechaf;
         this.usuario = usuario;
         this.habitaciones = habitaciones;
+        this.precio = precio;
     }
 
     public Reserva(Reserva reserva) {
@@ -71,6 +76,7 @@ public class Reserva {
         this.fechaf = reserva.getFechaf();
         this.usuario = reserva.getUsuario();
         this.habitaciones = reserva.getHabitaciones();
+        this.precio = getPrecio();
     }
 
     // Ctor
@@ -78,7 +84,7 @@ public class Reserva {
     }
 
     // Methods
-    public BigDecimal Precio(List<Habitacion> habitaciones) {
+    public BigDecimal getPrecio(List<Habitacion> habitaciones) {
         BigDecimal sum = new BigDecimal("0").setScale(2, BigDecimal.ROUND_UP);
         for (Habitacion h : habitaciones) {
             sum = sum.add(h.getTipo().getPrecio());
@@ -91,7 +97,7 @@ public class Reserva {
 
     public String getReferencia() {
         String referencia = "";
-        referencia = fechai + "" + fechaf + "" + usuario.getId();
+        referencia = fechai + "" + usuario.getId();
         return referencia;
     }
 
