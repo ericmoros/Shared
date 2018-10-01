@@ -1,6 +1,5 @@
 package com.hiberus.dual.hotel.modelos.habitacion;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.Optional;
 import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.modelos.usuario.Cliente;
 import com.hiberus.dual.hotel.modelos.usuario.Usuario;
-import com.hiberus.dual.hotel.repositorios.AtributoRepositorio;
 import com.hiberus.dual.hotel.repositorios.UsuarioRepositorio;
 
 import org.junit.Assert;
@@ -32,40 +30,40 @@ public class ClienteTest {
 	
 	@Test
 	public void testRead() {
-		Cliente clientes = null;
+		Cliente cliente = null;
 		Cliente clientesOld = null;
-		Optional<Cliente> oCliente = null;
+		Optional<Usuario> oCliente = null;
 		
-		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
-		clientesOld = new Cliente(clientes);
-		uR.save(clientes);
+		cliente = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
+		clientesOld = new Cliente(cliente);
+		uR.save(cliente);
 		
-		oCliente = uR.findById(clientes.getId());
+		oCliente = uR.findById(cliente.getId());
 		
-		if (oCliente.isPresent()) clientes = oCliente.get();
-		Assert.assertEquals(clientesOld, clientes);
+		if (oCliente.isPresent()) cliente = (Cliente) oCliente.get();
+		Assert.assertEquals(clientesOld, cliente);
 	}
 	
 	@Test
 	public void testReadAll() { // El test individual no funciona.
-		List<Cliente> clientes = null;
-		List<Cliente> clientesOld = null;
+		List<Usuario> clientes = null;
+		List<Usuario> clientesOld = null;
 
-		clientes = new ArrayList<Cliente>(
+		clientes = new ArrayList<Usuario>(
 			Arrays.asList(
 				new Cliente[] {
-					new Cliente(8L, EstadoEnum.DESHABILITADO, "DNI-Test", "Marcos"),
-					new Cliente(9L, EstadoEnum.DESHABILITADO, "DNI-Test2", "Agustin"),
-					new Cliente(10L, EstadoEnum.DESHABILITADO, "DNI-Test3", "Pepe"),
-					new Cliente(11L, EstadoEnum.DESHABILITADO, "DNI-Test4", "Diego"),
-					new Cliente(12L, EstadoEnum.DESHABILITADO, "DNI-Test5", "Martin")
+					new Cliente(8L, EstadoEnum.DESHABILITADO, "DNI-Test", "Marcos", null),
+					new Cliente(9L, EstadoEnum.DESHABILITADO, "DNI-Test2", "Agustin", null),
+					new Cliente(10L, EstadoEnum.DESHABILITADO, "DNI-Test3", "Pepe", null),
+					new Cliente(11L, EstadoEnum.DESHABILITADO, "DNI-Test4", "Diego", null),
+					new Cliente(12L, EstadoEnum.DESHABILITADO, "DNI-Test5", "Martin", null)
 				}
 			)
 		);
-		clientesOld = new ArrayList<Cliente>(clientes);
+		clientesOld = new ArrayList<Usuario>(clientes);
 		uR.saveAll(clientes);
 
-		clientes = (List<Cliente>) uR.findAll();
+		clientes = (List<Usuario>) uR.findAll();
 		Assert.assertEquals(clientesOld, clientes);
 		
 	}
@@ -74,14 +72,14 @@ public class ClienteTest {
 	public void testCreate() {
 		Cliente clientes = null;
 		Cliente clientesOld = null;
-		Optional<Cliente> oCliente = null;
-		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin");
+		Optional<Usuario> oCliente = null;
+		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
 		uR.save(clientes);
 		clientesOld = new Cliente(clientes);
 
 		oCliente = uR.findById(clientes.getId());
 
-		if (oCliente.isPresent()) clientes = oCliente.get();
+		if (oCliente.isPresent()) clientes = (Cliente) oCliente.get();
 		Assert.assertEquals(clientesOld, clientes);
 	}
 
@@ -89,9 +87,9 @@ public class ClienteTest {
 	public void testUpdate() {
 		Cliente clientes = null;
 		Cliente clientesOld = null;
-		Optional<Cliente> oCliente = null;
+		Optional<Usuario> oCliente = null;
 
-		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin");
+		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
 		uR.save(clientes);
         
         clientes.setEstado(EstadoEnum.DESHABILITADO);
@@ -102,16 +100,16 @@ public class ClienteTest {
 		
 		oCliente = uR.findById(clientes.getId());
 
-		if (oCliente.isPresent()) clientes = oCliente.get();
+		if (oCliente.isPresent()) clientes = (Cliente) oCliente.get();
 		Assert.assertEquals(clientesOld, clientes);
 	}
 
 	@Test
 	public void testDelete() {
 		Cliente clientes = null;
-		Optional<Cliente> oCliente = null;
+		Optional<Usuario> oCliente = null;
 
-		clientes = new Cliente(1L, EstadoEnum.DESHABILITADO, "DNI-Test", "Agustin");
+		clientes = new Cliente(1L, EstadoEnum.DESHABILITADO, "DNI-Test", "Agustin", null);
 		clientes = uR.save(clientes);
 		uR.deleteById(clientes.getId());
 
