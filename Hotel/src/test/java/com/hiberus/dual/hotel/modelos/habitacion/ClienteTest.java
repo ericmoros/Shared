@@ -36,11 +36,11 @@ public class ClienteTest {
 		Cliente clientesOld = null;
 		Optional<Cliente> oCliente = null;
 		
-		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin");
+		clientes = new Cliente(1L, EstadoEnum.HABILITADO, "DNI-Test", "Agustin", null);
 		clientesOld = new Cliente(clientes);
 		uR.save(clientes);
 		
-		oCliente = uR.findById(usuarios.getId());
+		oCliente = uR.findById(clientes.getId());
 		
 		if (oCliente.isPresent()) clientes = oCliente.get();
 		Assert.assertEquals(clientesOld, clientes);

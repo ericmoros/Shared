@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.persistence.Entity;
 
+import com.hiberus.dual.hotel.modelos.EstadoEnum;
 import com.hiberus.dual.hotel.modelos.hotel.Reserva;
 
 /**
@@ -17,7 +18,7 @@ public class Cliente extends Usuario {
         super();
     }
 
-    public Cliente(String dni, String nombre, ArrayList<Reserva> reservas) {
+    public Cliente(Long id, EstadoEnum estado, String dni, String nombre, ArrayList<Reserva> reservas) {
         super();
     }
 
