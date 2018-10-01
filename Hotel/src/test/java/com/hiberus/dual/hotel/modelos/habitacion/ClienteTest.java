@@ -54,11 +54,11 @@ public class ClienteTest {
 		clientes = new ArrayList<Cliente>(
 			Arrays.asList(
 				new Cliente[] {
-					new Cliente(8L, EstadoEnum.HABILITADO, "DNI-Test", "Marcos"),
+					new Cliente(8L, EstadoEnum.DESHABILITADO, "DNI-Test", "Marcos"),
 					new Cliente(9L, EstadoEnum.DESHABILITADO, "DNI-Test2", "Agustin"),
 					new Cliente(10L, EstadoEnum.DESHABILITADO, "DNI-Test3", "Pepe"),
-					new Cliente(11L, EstadoEnum.HABILITADO, "DNI-Test4", "Diego"),
-					new Cliente(12L, EstadoEnum.BORRADO, "DNI-Test5", "Martin"),
+					new Cliente(11L, EstadoEnum.DESHABILITADO, "DNI-Test4", "Diego"),
+					new Cliente(12L, EstadoEnum.DESHABILITADO, "DNI-Test5", "Martin")
 				}
 			)
 		);
