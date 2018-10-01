@@ -33,7 +33,6 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Id
     @Column(name = "referencia")
     private String referencia;
 
@@ -48,7 +47,7 @@ public class Reserva {
     private LocalDate fechaf;
 
     @Column(name = "precio")
-    private BigDecimal precio = new BigDecimal("0").setScale(2, BigDecimal.ROUND_UP);
+    private BigDecimal precio;
 
     // Relations
     @OneToOne
