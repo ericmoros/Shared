@@ -46,9 +46,6 @@ public class Reserva {
     @Column(name = "fecha_final")
     private LocalDate fechaf;
 
-    // @Column(name = "referencia")
-    // private String referencia;
-
     // Relations
     @OneToOne
     private Usuario usuario;
