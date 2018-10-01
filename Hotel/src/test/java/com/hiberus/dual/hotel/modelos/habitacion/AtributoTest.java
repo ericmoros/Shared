@@ -114,6 +114,5 @@ public class AtributoTest {
 		oAtributo = aR.findById(atributo.getId());
 		Assert.assertTrue(!oAtributo.isPresent());
 	}
-
-
+	
 }
